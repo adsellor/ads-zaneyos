@@ -1,9 +1,8 @@
-{
-  pkgs,
-  lib,
-  host,
-  config,
-  ...
+{ pkgs
+, lib
+, host
+, config
+, ...
 }:
 
 let
@@ -30,6 +29,7 @@ with lib;
           "idle_inhibitor"
         ];
         modules-right = [
+          "hyprland/language"
           "custom/hyprbindings"
           "custom/notification"
           "custom/exit"
@@ -37,6 +37,13 @@ with lib;
           "tray"
           "clock"
         ];
+
+        "hyprland/language" = {
+          format = "{}";
+          format-us = "us";
+          format-am = "am";
+          keybaord-name = "duckychannel-international-co.,-ltd.-ducky-keyboard";
+        };
 
         "hyprland/workspaces" = {
           format = "{name}";
@@ -270,6 +277,15 @@ with lib;
           margin: 0px;
           padding: 0px 15px 0px 30px;
           border-radius: 0px 0px 0px 40px;
+        }
+        #language {
+          font-weight: bold;
+          background: #${config.stylix.base16Scheme.base0F};
+          color: #${config.stylix.base16Scheme.base00};
+          margin: 4px 0px;
+          margin-right: 7px;
+          border-radius: 10px 24px 10px 24px;
+          padding: 0px 18px;
         }
       ''
     ];

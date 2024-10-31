@@ -1,8 +1,7 @@
-{
-  pkgs,
-  username,
-  host,
-  ...
+{ pkgs
+, username
+, host
+, ...
 }:
 let
   inherit (import ./variables.nix) gitUsername gitEmail;
@@ -76,6 +75,8 @@ in
 
   # Styling Options
   stylix.targets.waybar.enable = false;
+  stylix.targets.vim.enable = false;
+  stylix.targets.neovim.enable = false;
   stylix.targets.rofi.enable = false;
   stylix.targets.hyprland.enable = false;
   gtk = {
@@ -123,7 +124,7 @@ in
           after_sleep_cmd = "hyprctl dispatch dpms on";
           ignore_dbus_inhibit = false;
           lock_cmd = "hyprlock";
-          };
+        };
         listener = [
           {
             timeout = 900;
@@ -153,7 +154,7 @@ in
       settings = {
         scrollback_lines = 2000;
         wheel_scroll_min_lines = 1;
-        window_padding_width = 4;
+        window_padding_width = 0;
         confirm_os_window_close = 0;
       };
       extraConfig = ''
@@ -163,10 +164,10 @@ in
         inactive_tab_font_style bold
       '';
     };
-     starship = {
-            enable = true;
-            package = pkgs.starship;
-     };
+    starship = {
+      enable = true;
+      package = pkgs.starship;
+    };
     bash = {
       enable = true;
       enableCompletion = true;

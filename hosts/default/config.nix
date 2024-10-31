@@ -1,10 +1,9 @@
-{
-  config,
-  pkgs,
-  host,
-  username,
-  options,
-  ...
+{ config
+, pkgs
+, host
+, username
+, options
+, ...
 }:
 let
   inherit (import ./variables.nix) keyboardLayout;
@@ -298,7 +297,7 @@ in
   fonts = {
     packages = with pkgs; [
       noto-fonts-emoji
-      noto-fonts-cjk
+      noto-fonts-cjk-sans
       font-awesome
       # Commenting Symbola out to fix install this will need to be fixed or an alternative found.
       # symbola
@@ -332,7 +331,7 @@ in
       enable = false;
       xkb = {
         layout = "${keyboardLayout}";
-        variant = "";
+        variant = "dvp,";
       };
     };
     greetd = {
@@ -466,7 +465,7 @@ in
     enable = true;
   };
 
-  console.keyMap = "${keyboardLayout}";
+  console.keyMap = "us";
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
