@@ -23,21 +23,6 @@
             enable = true;
             };
           };
-              # Ensure the server uses the workspace TypeScript version
-        typescript.tsdk = "node_modules/typescript/lib";
-        tsserver_format_options = {
-          __raw = ''
-            function(ft)
-              return {
-                allowIncompleteCompletions = false,
-                allowRenameOfImportPath = false,
-              }
-            end
-          '';
-        };
-        tsserver_plugins = [
-          "@styled/typescript-styled-plugin"
-        ];
       };
     };
   };

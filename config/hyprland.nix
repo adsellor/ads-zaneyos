@@ -46,7 +46,7 @@ with lib;
           exec-once = killall -q swaync;sleep .5 && swaync
           exec-once = nm-applet --indicator
           exec-once = lxqt-policykit-agent
-          exec-once = sleep 1.5 && swww img /home/${username}/Pictures/Wallpapers/nix.png
+          exec-once = sleep 1.5 && swww img /home/${username}/Pictures/Wallpapers/zaney-wallpaper.jpg
           monitor=,preferred,auto,1
           ${extraMonitorSettings}
           general {
@@ -60,7 +60,7 @@ with lib;
           }
           input {
             kb_layout = ${keyboardLayout}
-            kb_variant = dvp,phonetic 
+            kb_variant = dvp,phonetic
             kb_options = grp:ctrl_space_toggle
             follow_mouse = 1
             touchpad {

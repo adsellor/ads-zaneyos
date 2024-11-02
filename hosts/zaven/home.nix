@@ -99,7 +99,6 @@ in
     platformTheme.name = "gtk3";
   };
 
-
   # Scripts
   home.packages = [
     (import ../../scripts/emopicker9000.nix { inherit pkgs; })
@@ -152,8 +151,13 @@ in
     };
     fish = {
       enable = true;
+      # plugins = [
+      # { name = "grc"; src = pkgs.fishPlugins.grc.src; }
+      # { name = "fzf-fish"; src = pkgs.fishPlugins.fzf-fish.src; }
+      # { name = "forgit"; src = pkgs.fishPlugins.forgit.src; }
+    # ];
       interactiveShellInit = ''
-        set greeting 
+        set greeting
       '';
       shellAliases = {
         sv = "sudo nvim";

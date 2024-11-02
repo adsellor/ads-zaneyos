@@ -62,7 +62,7 @@
   '';
   home.file.".config/swaync/style.css".text = ''
     * {
-      font-family: JetBrainsMono Nerd Font Mono;
+      font-family: JetBrainsMono Nerd Font Mono NoLiga;
       font-weight: bold;
     }
     .control-center .notification-row:focus,

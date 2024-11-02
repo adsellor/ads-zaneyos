@@ -26,22 +26,20 @@ in
         signal-desktop
         telegram-desktop
         lazygit
-        gpu-screen-recorder
-        gpu-screen-recorder-gtk
-        nodejs
+        nodejs_22
         yazi
         obs-studio
         jq
-        fishPlugins.fzf-fish
-        fishPlugins.forgit
         fzf
-        fishPlugins.grc
         grc
         go-task
-        prettierd
-        eslint_d
         typescript
         element-desktop
+        pnpm
+        eslint_d
+        prettierd
+        neofetch
+        any-nix-shell
       ];
     };
     # "newuser" = {

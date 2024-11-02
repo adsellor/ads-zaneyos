@@ -80,7 +80,7 @@ in
     fonts = {
       monospace = {
         package = pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; };
-        name = "JetBrainsMono Nerd Font Mono";
+        name = "JetBrainsMono Nerd Font Mono NoLiga";
       };
       sansSerif = {
         package = pkgs.montserrat;

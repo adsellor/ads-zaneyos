@@ -86,6 +86,10 @@
          installRustc = false;
         };
 
+        eslint = {
+          enable = true;
+        };
+
         # ts_ls = {
         #   enable = true;
         # };

@@ -82,7 +82,7 @@ in
     fonts = {
       monospace = {
         package = pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; };
-        name = "JetBrainsMono Nerd Font Mono";
+        name = "JetBrainsMono Nerd Font Mono NoLiga";
       };
       sansSerif = {
         package = pkgs.montserrat;
@@ -317,7 +317,6 @@ in
   environment.variables = {
     ZANEYOS_VERSION = "2.2";
     ZANEYOS = "true";
-    NIX_BUILD_SHELL = "fish";
   };
 
   # Extra Portal Configuration
@@ -478,8 +477,6 @@ in
   };
 
   console.keyMap = "us";
-
-
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

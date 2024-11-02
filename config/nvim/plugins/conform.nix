@@ -6,8 +6,6 @@
     extraPackages = with pkgs; [
       # Used to format Lua code
       stylua
-      eslint_d
-      prettierd
     ];
 
     # Autoformat
@@ -23,7 +21,7 @@
             -- lanuages here or re-enable it for the disabled ones.
             local disable_filetypes = { c = true, cpp = true }
             return {
-              timeout_ms = 500,
+              timeout_ms = 1000,
               lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype]
             }
           end
@@ -32,10 +30,34 @@
           lua = ["stylua"];
           # Conform can also run multiple formatters sequentially
           # python = [ "isort "black" ];
-          #
-          # You can use a sublist to tell conform to run *until* a formatter
-          # is found
-          javascript = [ ["prettierd" "eslint_d"  ] ];
+          javascript = { 
+            __unkeyed-1 = "eslint_d";
+            __unkeyed-2 = "eslint";
+            __unkeyed-3 = "prettierd";
+            stop_after_first = true;
+          };
+          javascriptreact = { 
+            __unkeyed-1 = "eslint_d";
+            __unkeyed-2 = "eslint";
+            __unkeyed-3 = "prettierd";
+            stop_after_first = true;
+          };
+          typescript = { 
+            __unkeyed-1 = "eslint_d";
+            __unkeyed-2 = "eslint";
+            __unkeyed-3 = "prettierd";
+            stop_after_first = true;
+          };
+          typescriptreact = { 
+            __unkeyed-1 = "eslint_d";
+            __unkeyed-2 = "eslint";
+            __unkeyed-3 = "prettierd";
+            stop_after_first = true;  
+          };
+          "_" = [
+           "squeeze_blanks"
+           "trim_whitespace"
+          ];
         };
       };
     };
