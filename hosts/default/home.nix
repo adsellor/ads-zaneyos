@@ -97,7 +97,6 @@ in
     platformTheme.name = "gtk3";
   };
 
-
   # Scripts
   home.packages = [
     (import ../../scripts/emopicker9000.nix { inherit pkgs; })

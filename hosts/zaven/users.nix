@@ -40,6 +40,7 @@ in
         prettierd
         neofetch
         any-nix-shell
+        zathura
       ];
     };
     # "newuser" = {

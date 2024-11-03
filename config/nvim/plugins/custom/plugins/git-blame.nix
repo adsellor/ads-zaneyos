@@ -13,7 +13,6 @@
           priority = 7;
         };
         use_blame_commit_file_urls = false;
-        virtual_text_column = 80;
       };
     };
     keymaps = [

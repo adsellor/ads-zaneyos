@@ -151,13 +151,14 @@ in
     };
     fish = {
       enable = true;
-      # plugins = [
-      # { name = "grc"; src = pkgs.fishPlugins.grc.src; }
-      # { name = "fzf-fish"; src = pkgs.fishPlugins.fzf-fish.src; }
-      # { name = "forgit"; src = pkgs.fishPlugins.forgit.src; }
-    # ];
+      plugins = [
+      { name = "grc"; src = pkgs.fishPlugins.grc.src; }
+      { name = "fzf-fish"; src = pkgs.fishPlugins.fzf-fish.src; }
+      { name = "forgit"; src = pkgs.fishPlugins.forgit.src; }
+      ];
       interactiveShellInit = ''
-        set greeting
+        set fish_greeting
+        ${pkgs.any-nix-shell}/bin/any-nix-shell fish --info-right | source
       '';
       shellAliases = {
         sv = "sudo nvim";

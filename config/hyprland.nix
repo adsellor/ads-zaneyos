@@ -47,6 +47,11 @@ with lib;
           exec-once = nm-applet --indicator
           exec-once = lxqt-policykit-agent
           exec-once = sleep 1.5 && swww img /home/${username}/Pictures/Wallpapers/zaney-wallpaper.jpg
+          exec-once = zen
+          exec-once = zellij
+          exec-once = spotify
+          exec-once = signal-desktop
+          exec-once = telegram-desktop
           monitor=,preferred,auto,1
           ${extraMonitorSettings}
           general {
@@ -82,6 +87,12 @@ with lib;
           windowrulev2 = minsize 1 1, title:^()$,class:^(steam)$
           windowrulev2 = opacity 0.9 0.7, class:^(Brave)$
           windowrulev2 = opacity 0.9 0.7, class:^(thunar)$
+          windowrulev2 = workspace 1, class:^(zen)$
+          windowrulev2 = workspace 2, class:^(zellij)$
+          windowrulev2 = workspace special, class:^(Spotify)$
+          windowrulev2 = workspace special, class:^(Signal)$
+          windowrulev2 = workspace special, class:^(telegram-desktop)$
+          windowrulev2 = workspace special, class:^(org.telegram.desktop)$
           gestures {
             workspace_swipe = true
             workspace_swipe_fingers = 3
