@@ -102,14 +102,14 @@ in
   };
 
   # Extra Module Options
-  drivers.amdgpu.enable = true;
-  drivers.nvidia.enable = false;
+  drivers.amdgpu.enable = false;
+  drivers.nvidia.enable = true;
   drivers.nvidia-prime = {
-    enable = false;
-    intelBusID = "";
-    nvidiaBusID = "";
+    enable = true;
+    intelBusID = "PCI:0:2:0";
+    nvidiaBusID = "PCI:1:0:0";
   };
-  drivers.intel.enable = false;
+  drivers.intel.enable = true;
   vm.guest-services.enable = false;
   local.hardware-clock.enable = false;
 
@@ -229,6 +229,10 @@ in
         thunar-volman
       ];
     };
+    coolercontrol = {
+      enable = true;
+      nvidiaSupport = true;
+    };
   };
 
   nixpkgs.config.allowUnfree = true;
@@ -301,6 +305,7 @@ in
     libcap
     go
     gcc
+    coolercontrol.coolercontrol-gui
   ];
 
   fonts = {
