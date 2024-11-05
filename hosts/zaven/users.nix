@@ -26,7 +26,6 @@ in
         signal-desktop
         telegram-desktop
         lazygit
-        nodejs_22
         yazi
         obs-studio
         jq
@@ -41,6 +40,7 @@ in
         neofetch
         any-nix-shell
         zathura
+        fnm
       ];
     };
     # "newuser" = {

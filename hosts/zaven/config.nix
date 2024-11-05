@@ -233,6 +233,13 @@ in
       enable = true;
       nvidiaSupport = true;
     };
+
+    nix-ld = {
+      enable = true;
+      libraries = with pkgs; [
+        fnm
+      ];
+    };
   };
 
   nixpkgs.config.allowUnfree = true;
