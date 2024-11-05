@@ -236,6 +236,11 @@ in
   };
 
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.overlays = [
+     (final: prev: {
+      _7zz = prev._7zz.override { useUasm = true; };
+    })
+  ];
 
   users = {
     mutableUsers = true;
@@ -342,7 +347,7 @@ in
   # Services to start
   services = {
     xserver = {
-      enable = false;
+      enable = true;
       xkb = {
         layout = "${keyboardLayout}";
         variant = "dvp,";

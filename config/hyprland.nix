@@ -47,11 +47,11 @@ with lib;
           exec-once = nm-applet --indicator
           exec-once = lxqt-policykit-agent
           exec-once = sleep 1.5 && swww img /home/${username}/Pictures/Wallpapers/zaney-wallpaper.jpg
-          exec-once = zen
-          exec-once = zellij
-          exec-once = spotify
-          exec-once = signal-desktop
-          exec-once = telegram-desktop
+          exec-once = sleep 1 && zen
+          exec-once = sleep 2 && ${terminal} ${tmx}
+          exec-once = sleep 3 && spotify
+          exec-once = sleep 3 && signal-desktop
+          exec-once = sleep 3 && telegram-desktop
           monitor=,preferred,auto,1
           ${extraMonitorSettings}
           general {
@@ -83,12 +83,8 @@ with lib;
           windowrule = float, swayimg|vlc|Viewnior|pavucontrol
           windowrule = float, nwg-look|qt5ct|mpv
           windowrule = float, zoom
-          windowrulev2 = stayfocused, title:^()$,class:^(steam)$
-          windowrulev2 = minsize 1 1, title:^()$,class:^(steam)$
-          windowrulev2 = opacity 0.9 0.7, class:^(Brave)$
-          windowrulev2 = opacity 0.9 0.7, class:^(thunar)$
-          windowrulev2 = workspace 1, class:^(zen)$
-          windowrulev2 = workspace 2, class:^(zellij)$
+          windowrulev2 = stayfocused, workspace 1, class:^(zen)$
+          windowrulev2 = workspace 2, class:^(${terminal})$
           windowrulev2 = workspace special, class:^(Spotify)$
           windowrulev2 = workspace special, class:^(Signal)$
           windowrulev2 = workspace special, class:^(telegram-desktop)$
@@ -98,7 +94,7 @@ with lib;
             workspace_swipe_fingers = 3
           }
           misc {
-            initial_workspace_tracking = 0
+            initial_workspace_tracking = true
             mouse_move_enables_dpms = true
             key_press_enables_dpms = false
           }
