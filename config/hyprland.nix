@@ -46,7 +46,7 @@ with lib;
           exec-once = killall -q swaync;sleep .5 && swaync
           exec-once = nm-applet --indicator
           exec-once = lxqt-policykit-agent
-          exec-once = sleep 1.5 && swww img /home/${username}/Pictures/Wallpapers/zaney-wallpaper.jpg
+          exec-once = sleep 1.5 && swww img /home/${username}/Pictures/Wallpapers/nix.png
           exec-once = sleep 1 && zen
           exec-once = sleep 2 && ${terminal} ${tmx}
           exec-once = sleep 3 && spotify
@@ -84,6 +84,7 @@ with lib;
           windowrule = float, nwg-look|qt5ct|mpv
           windowrule = float, zoom
           windowrulev2 = stayfocused, workspace 1, class:^(zen)$
+          windowrulev2 = stayfocused, workspace 1, class:^(Zen Browser)$
           windowrulev2 = workspace 2, class:^(${terminal})$
           windowrulev2 = workspace special, class:^(Spotify)$
           windowrulev2 = workspace special, class:^(Signal)$

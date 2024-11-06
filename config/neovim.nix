@@ -38,6 +38,7 @@
      ./nvim/plugins/custom/plugins/toggleterm.nix
      ./nvim/plugins/custom/plugins/lazygit.nix
      ./nvim/plugins/custom/plugins/typescript-tools.nix
+    # ./nvim/plugins/custom/plugins/avante.nix
   ];
 
   /*

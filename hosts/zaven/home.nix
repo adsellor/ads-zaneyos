@@ -158,6 +158,7 @@ in
       ];
       interactiveShellInit = ''
         set fish_greeting
+        fnm env --use-on-cd --shell fish | source
         ${pkgs.any-nix-shell}/bin/any-nix-shell fish --info-right | source
       '';
       shellAliases = {
