@@ -154,6 +154,7 @@ in
       plugins = [
       { name = "grc"; src = pkgs.fishPlugins.grc.src; }
       { name = "fzf-fish"; src = pkgs.fishPlugins.fzf-fish.src; }
+      { name = "plugin-git"; src = pkgs.fishPlugins.plugin-git.src; }
       { name = "forgit"; src = pkgs.fishPlugins.forgit.src; }
       ];
       interactiveShellInit = ''
@@ -232,14 +233,14 @@ in
           hide_cursor = true;
           no_fade_in = false;
         };
-        background = [
+        background = lib.mkForce [
           {
             path = "/home/${username}/Pictures/Wallpapers/zaney-wallpaper.jpg";
             blur_passes = 3;
             blur_size = 8;
           }
         ];
-        image = [
+        image = lib.mkForce [
           {
             path = "/home/${username}/.config/face.jpg";
             size = 150;
@@ -251,7 +252,7 @@ in
             valign = "center";
           }
         ];
-        input-field = [
+        input-field = lib.mkForce [
           {
             size = "200, 50";
             position = "0, -80";

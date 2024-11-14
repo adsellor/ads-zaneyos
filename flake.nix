@@ -20,7 +20,7 @@
   outputs =
     { nixpkgs, home-manager, ... }@inputs:
     let
-      system = "aarch64-linux";
+      system = "x86_64-linux";
       host = "zaven";
       username = "zaven";
     in

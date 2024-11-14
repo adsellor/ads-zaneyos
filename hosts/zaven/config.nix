@@ -49,7 +49,8 @@ in
       mask = ''\xff\xff\xff\xff\x00\x00\x00\x00\xff\xff\xff'';
       magicOrExtension = ''\x7fELF....AI\x02'';
     };
-    plymouth.enable = true;
+    # activate this later
+    plymouth.enable = false;
   };
 
   # Styling Options
@@ -113,8 +114,16 @@ in
   vm.guest-services.enable = false;
   local.hardware-clock.enable = false;
 
-  # Enable networking
-  networking.networkmanager.enable = true;
+  networking.networkmanager = {
+    enable = true;
+
+    settings = {
+      iot = {
+        enabled = false;
+        "bind-port" = 0;
+      };
+    };
+  };
   networking.hostName = host;
   networking.timeServers = options.networking.timeServers.default ++ [ "pool.ntp.org" ];
 

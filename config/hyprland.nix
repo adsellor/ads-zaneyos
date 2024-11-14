@@ -48,11 +48,11 @@ with lib;
           exec-once = lxqt-policykit-agent
           exec-once = sleep 1.5 && swww img /home/${username}/Pictures/Wallpapers/nix.png
           exec-once = sleep 1 && zen
-          exec-once = sleep 2 && ${terminal} ${tmx}
-          exec-once = sleep 3 && spotify
-          exec-once = sleep 3 && signal-desktop
-          exec-once = sleep 3 && telegram-desktop
-          monitor=,preferred,auto,1
+          exec-once = sleep 1 && ${terminal} ${tmx}
+          exec-once = sleep 1 && signal-desktop
+          exec-once = sleep 1 && telegram-desktop
+          exec-once = sleep 1 && spotify
+          monitor=,2560x1440@240,auto,1
           ${extraMonitorSettings}
           general {
             gaps_in = 6
@@ -83,8 +83,12 @@ with lib;
           windowrule = float, swayimg|vlc|Viewnior|pavucontrol
           windowrule = float, nwg-look|qt5ct|mpv
           windowrule = float, zoom
-          windowrulev2 = stayfocused, workspace 1, class:^(zen)$
-          windowrulev2 = stayfocused, workspace 1, class:^(Zen Browser)$
+          windowrulev2 = float, class:^(zen-alpha)$,title:^(Picture-in-Picture)$
+          windowrulev2 = pin, class:^(zen-alpha)$,title:^(Picture-in-Picture)$
+          windowrulev2 = opacity 1.0 override, class:^(zen-alpha)$,title:^(Picture-in-Picture)$
+          windowrulev2 = size 20% 20%, class:^(zen-alpha)$,title:^(Picture-in-Picture)$
+          windowrulev2 = noinitialfocus, class:^(zen-alpha)$,title:^(Picture-in-Picture)$
+          windowrulev2 = keepaspectratio, class:^(zen-alpha)$,title:^(Picture-in-Picture)$
           windowrulev2 = workspace 2, class:^(${terminal})$
           windowrulev2 = workspace special, class:^(Spotify)$
           windowrulev2 = workspace special, class:^(Signal)$
@@ -203,8 +207,8 @@ with lib;
           bindm = ${modifier},mouse:273,resizewindow
           bind = ALT,Tab,cyclenext
           bind = ALT,Tab,bringactivetotop
-          bind = ,XF86AudioRaiseVolume,exec,wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
-          bind = ,XF86AudioLowerVolume,exec,wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+          binde = ,XF86AudioRaiseVolume,exec,wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
+          binde = ,XF86AudioLowerVolume,exec,wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
           binde = ,XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
           bind = ,XF86AudioPlay, exec, playerctl play-pause
           bind = ,XF86AudioPause, exec, playerctl play-pause
@@ -214,7 +218,7 @@ with lib;
           bind = ,XF86MonBrightnessUp,exec,brightnessctl set +5%
           bind = ${modifier}CONTROL,L, exec, hyprlock
           bind = ${modifier},Z,exec,${terminal} ${tmx}
-          bind = ${modifier}SHIFT,K,exec, killall .waybar-wrapped || waybar
+          bind = ,Scroll_Lock,exec,${terminal}
         ''
       ];
   };

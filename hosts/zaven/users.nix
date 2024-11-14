@@ -34,13 +34,15 @@ in
         go-task
         typescript
         element-desktop
-        pnpm
         eslint_d
         prettierd
         neofetch
         any-nix-shell
         zathura
         fnm
+        obsidian
+        devbox
+        corepack
       ];
     };
     # "newuser" = {
