@@ -10,20 +10,25 @@
       url = "github:VonHeikemen/fine-cmdline.nvim";
       flake = false;
     };
+    zen-browser.url = "github:0xc000022070/zen-browser-flake";
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
     { nixpkgs, home-manager, ... }@inputs:
     let
-      system = "aarch64-linux";
-      host = "nixbook";
-      username = "zaney";
+      system = "x86_64-linux";
+      host = "fernix";
+      username = "zaven";
     in
     {
       nixosConfigurations = {
         "${host}" = nixpkgs.lib.nixosSystem {
           specialArgs = {
-	    inherit system;
+            inherit system;
             inherit inputs;
             inherit username;
             inherit host;

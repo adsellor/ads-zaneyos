@@ -1,9 +1,8 @@
-{
-  lib,
-  username,
-  host,
-  config,
-  ...
+{ lib
+, username
+, host
+, config
+, ...
 }:
 
 let
@@ -12,6 +11,7 @@ let
     terminal
     extraMonitorSettings
     keyboardLayout
+    fileManager
     ;
 in
 with lib;
@@ -45,8 +45,14 @@ with lib;
           exec-once = killall -q swaync;sleep .5 && swaync
           exec-once = nm-applet --indicator
           exec-once = lxqt-policykit-agent
-          exec-once = sleep 1.5 && swww img /home/${username}/Pictures/Wallpapers/beautifulmountainscape.jpg
-          monitor=,preferred,auto,1
+          exec-once = sleep 1.5 && swww img /home/${username}/Pictures/Wallpapers/pixel-galaxy.png
+          exec-once = zen
+          exec-once = sleep 1 && ${terminal}
+          exec-once = sleep 1 && signal-desktop
+          exec-once = sleep 1 && telegram-desktop
+          exec-once = sleep 1 && spotify
+          exec-once = auto-dnd
+          monitor=,2560x1440@240,auto,1
           ${extraMonitorSettings}
           general {
             gaps_in = 6
@@ -59,8 +65,8 @@ with lib;
           }
           input {
             kb_layout = ${keyboardLayout}
-            kb_options = grp:alt_shift_toggle
-            kb_options = caps:super
+            kb_variant = dvp,phonetic
+            kb_options = grp:ctrl_space_toggle
             follow_mouse = 1
             touchpad {
               natural_scroll = true
@@ -77,18 +83,29 @@ with lib;
           windowrule = float, swayimg|vlc|Viewnior|pavucontrol
           windowrule = float, nwg-look|qt5ct|mpv
           windowrule = float, zoom
-          windowrulev2 = stayfocused, title:^()$,class:^(steam)$
-          windowrulev2 = minsize 1 1, title:^()$,class:^(steam)$
-          windowrulev2 = opacity 0.9 0.7, class:^(Brave)$
-          windowrulev2 = opacity 0.9 0.7, class:^(thunar)$
+          windowrulev2 = float, class:^(zen)$,title:^(Picture-in-Picture)$
+          windowrulev2 = pin, class:^(zen)$,title:^(Picture-in-Picture)$
+          windowrulev2 = opacity 1.0 override, class:^(zen)$,title:^(Picture-in-Picture)$
+          windowrulev2 = size 20% 20%, class:^(zen)$,title:^(Picture-in-Picture)$
+          windowrulev2 = noinitialfocus, class:^(zen)$,title:^(Picture-in-Picture)$
+          windowrulev2 = keepaspectratio, class:^(zen)$,title:^(Picture-in-Picture)$
+          windowrulev2 = workspace 2, class:^(${terminal})$
+          windowrulev2 = workspace 1, class:^(zen)$
+          windowrulev2 = workspace 1, class:^(zen)$
+          windowrulev2 = workspace special:one, class:^(Spotify)$
+          windowrulev2 = workspace special:one, class:^(Signal)$
+          windowrulev2 = workspace special:one, class:^(telegram-desktop)$
+          windowrulev2 = workspace special:one, class:^(org.telegram.desktop)$
+          windowrulev2 = workspace special:two, class:^(slack)$
           gestures {
             workspace_swipe = true
             workspace_swipe_fingers = 3
           }
           misc {
-            initial_workspace_tracking = 0
+            initial_workspace_tracking = true
             mouse_move_enables_dpms = true
             key_press_enables_dpms = false
+            focus_on_activate = true
           }
           animations {
             enabled = yes
@@ -106,10 +123,12 @@ with lib;
           }
           decoration {
             rounding = 10
-            drop_shadow = true
-            shadow_range = 4
-            shadow_render_power = 3
-            col.shadow = rgba(1a1a1aee)
+            shadow {
+              enabled = true
+              range = 4
+              render_power = 3
+              color = rgba(1a1a1aee)
+            }
             blur {
                 enabled = true
                 size = 5
@@ -140,6 +159,7 @@ with lib;
           bind = ${modifier},G,exec,gimp
           bind = ${modifier}SHIFT,G,exec,godot4
           bind = ${modifier},T,exec,thunar
+          bind = ${modifier},Y,exec, ${terminal} ${fileManager}
           bind = ${modifier},M,exec,spotify
           bind = ${modifier},Q,killactive,
           bind = ${modifier},P,pseudo,
@@ -163,28 +183,30 @@ with lib;
           bind = ${modifier},l,movefocus,r
           bind = ${modifier},k,movefocus,u
           bind = ${modifier},j,movefocus,d
-          bind = ${modifier},1,workspace,1
-          bind = ${modifier},2,workspace,2
-          bind = ${modifier},3,workspace,3
-          bind = ${modifier},4,workspace,4
-          bind = ${modifier},5,workspace,5
-          bind = ${modifier},6,workspace,6
-          bind = ${modifier},7,workspace,7
-          bind = ${modifier},8,workspace,8
-          bind = ${modifier},9,workspace,9
-          bind = ${modifier},0,workspace,10
-          bind = ${modifier}SHIFT,SPACE,movetoworkspace,special
-          bind = ${modifier},SPACE,togglespecialworkspace
-          bind = ${modifier}SHIFT,1,movetoworkspace,1
-          bind = ${modifier}SHIFT,2,movetoworkspace,2
-          bind = ${modifier}SHIFT,3,movetoworkspace,3
-          bind = ${modifier}SHIFT,4,movetoworkspace,4
-          bind = ${modifier}SHIFT,5,movetoworkspace,5
-          bind = ${modifier}SHIFT,6,movetoworkspace,6
-          bind = ${modifier}SHIFT,7,movetoworkspace,7
-          bind = ${modifier}SHIFT,8,movetoworkspace,8
-          bind = ${modifier}SHIFT,9,movetoworkspace,9
-          bind = ${modifier}SHIFT,0,movetoworkspace,10
+          bind = ${modifier},ampersand,workspace,1
+          bind = ${modifier},bracketleft,workspace,2
+          bind = ${modifier},braceleft,workspace,3
+          bind = ${modifier},braceright,workspace,4
+          bind = ${modifier},parenleft,workspace,5
+          bind = ${modifier},equal,workspace,6
+          bind = ${modifier},asterisk,workspace,7
+          bind = ${modifier},parenright,workspace,8
+          bind = ${modifier},plus,workspace,9
+          bind = ${modifier},bracketright,workspace,10
+          bind = ${modifier}SHIFT,SPACE,movetoworkspace,special:one
+          bind = ${modifier},SPACE,togglespecialworkspace,one
+          bind = ${modifier}SHIFT,Tab,movetoworkspace,special:two
+          bind = ${modifier},Tab,togglespecialworkspace,two
+          bind = ${modifier}SHIFT,ampersand,movetoworkspace,1
+          bind = ${modifier}SHIFT,bracketleft,movetoworkspace,2
+          bind = ${modifier}SHIFT,braceleft,movetoworkspace,3
+          bind = ${modifier}SHIFT,braceright,movetoworkspace,4
+          bind = ${modifier}SHIFT,parenleft,movetoworkspace,5
+          bind = ${modifier}SHIFT,equal,movetoworkspace,6
+          bind = ${modifier}SHIFT,asterisk,movetoworkspace,7
+          bind = ${modifier}SHIFT,parenright,movetoworkspace,8
+          bind = ${modifier}SHIFT,plus,movetoworkspace,9
+          bind = ${modifier}SHIFT,bracketright,movetoworkspace,10
           bind = ${modifier}CONTROL,right,workspace,e+1
           bind = ${modifier}CONTROL,left,workspace,e-1
           bind = ${modifier},mouse_down,workspace, e+1
@@ -193,8 +215,8 @@ with lib;
           bindm = ${modifier},mouse:273,resizewindow
           bind = ALT,Tab,cyclenext
           bind = ALT,Tab,bringactivetotop
-          bind = ,XF86AudioRaiseVolume,exec,wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
-          bind = ,XF86AudioLowerVolume,exec,wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+          binde = ,XF86AudioRaiseVolume,exec,wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
+          binde = ,XF86AudioLowerVolume,exec,wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
           binde = ,XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
           bind = ,XF86AudioPlay, exec, playerctl play-pause
           bind = ,XF86AudioPause, exec, playerctl play-pause
@@ -202,6 +224,10 @@ with lib;
           bind = ,XF86AudioPrev, exec, playerctl previous
           bind = ,XF86MonBrightnessDown,exec,brightnessctl set 5%-
           bind = ,XF86MonBrightnessUp,exec,brightnessctl set +5%
+          bind = ${modifier}CONTROL,L, exec, hyprlock
+          bind = ${modifier},Z,exec,${terminal}
+          bind = ,Scroll_Lock,exec,${terminal}
+          bind = ${modifier},N,exec,${terminal} newsboat
         ''
       ];
   };

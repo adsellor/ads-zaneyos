@@ -1,9 +1,8 @@
-{
-  pkgs,
-  lib,
-  host,
-  config,
-  ...
+{ pkgs
+, lib
+, host
+, config
+, ...
 }:
 
 let
@@ -30,13 +29,20 @@ with lib;
           "idle_inhibitor"
         ];
         modules-right = [
-          "custom/hyprbindings"
+          "hyprland/language"
           "custom/notification"
           "custom/exit"
           "battery"
           "tray"
           "clock"
         ];
+
+        "hyprland/language" = {
+          format = "{}";
+          format-us = "us";
+          format-am = "am";
+          keybaord-name = "duckychannel-international-co.,-ltd.-ducky-keyboard";
+        };
 
         "hyprland/workspaces" = {
           format = "{name}";
@@ -122,11 +128,6 @@ with lib;
           format = "";
           # exec = "rofi -show drun";
           on-click = "sleep 0.1 && rofi-launcher";
-        };
-        "custom/hyprbindings" = {
-          tooltip = false;
-          format = "󱕴";
-          on-click = "sleep 0.1 && list-hypr-bindings";
         };
         "idle_inhibitor" = {
           format = "{icon}";
@@ -241,8 +242,8 @@ with lib;
           margin: 4px 0px;
           margin-left: 7px;
           padding: 0px 18px;
-          background: #${config.stylix.base16Scheme.base04};
-          color: #${config.stylix.base16Scheme.base00};
+          background: #${config.stylix.base16Scheme.base01};
+          color: #${config.stylix.base16Scheme.base05};
           border-radius: 24px 10px 24px 10px;
         }
         #custom-startmenu {
@@ -253,11 +254,11 @@ with lib;
           padding: 0px 30px 0px 15px;
           border-radius: 0px 0px 40px 0px;
         }
-        #custom-hyprbindings, #network, #battery,
-        #custom-notification, #tray, #custom-exit {
+        #network, #battery, #custom-notification,
+        #tray, #custom-exit {
           font-weight: bold;
-          background: #${config.stylix.base16Scheme.base0F};
-          color: #${config.stylix.base16Scheme.base00};
+          background: #${config.stylix.base16Scheme.base01};
+          color: #${config.stylix.base16Scheme.base05};
           margin: 4px 0px;
           margin-right: 7px;
           border-radius: 10px 24px 10px 24px;
@@ -265,11 +266,20 @@ with lib;
         }
         #clock {
           font-weight: bold;
-          color: #0D0E15;
-          background: linear-gradient(90deg, #${config.stylix.base16Scheme.base0E}, #${config.stylix.base16Scheme.base0C});
+          color: #${config.stylix.base16Scheme.base0B};
+          background: #${config.stylix.base16Scheme.base02};
           margin: 0px;
           padding: 0px 15px 0px 30px;
           border-radius: 0px 0px 0px 40px;
+        }
+        #language {
+          font-weight: bold;
+          background: #${config.stylix.base16Scheme.base01};
+          color: #${config.stylix.base16Scheme.base05};
+          margin: 4px 0px;
+          margin-right: 7px;
+          border-radius: 10px 24px 10px 24px;
+          padding: 0px 18px;
         }
       ''
     ];
