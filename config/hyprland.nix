@@ -119,7 +119,7 @@ with lib;
             animation = windowsMove, 1, 5, wind, slide
             animation = border, 1, 1, liner
             animation = fade, 1, 10, default
-            animation = workspaces, 1, 5, wind
+            animation = workspaces, 0, 5, wind
           }
           decoration {
             rounding = 10

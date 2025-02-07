@@ -54,6 +54,7 @@ in
         dive
         podman-compose
         transmission_4
+        typora
       ];
     };
     # "newuser" = {
