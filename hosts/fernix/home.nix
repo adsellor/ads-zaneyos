@@ -2,10 +2,12 @@
 , username
 , host
 , lib
+, inputs
 , ...
 }:
 let
   inherit (import ./variables.nix) gitUsername gitEmail;
+  spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.system};
 in
 {
   # Home Manager Settings
@@ -26,6 +28,7 @@ in
     ../../config/waybar.nix
     ../../config/wlogout.nix
     ../../config/fastfetch
+    inputs.spicetify-nix.homeManagerModules.spicetify
   ];
 
   # Place Files Inside Home Directory
@@ -73,6 +76,15 @@ in
     };
   };
 
+  programs.spicetify = {
+    enable = true;
+    enabledExtensions = with spicePkgs.extensions; [
+      adblockify
+       hidePodcasts
+       shuffle
+     ];
+  };
+
   # Create XDG Dirs
   xdg = {
     userDirs = {
@@ -106,8 +118,8 @@ in
   };
   qt = {
     enable = true;
-    style.name = "adwaita-dark";
-    platformTheme.name = "gtk3";
+    style.name =  lib.mkForce "adwaita-dark";
+    platformTheme.name = lib.mkForce "gtk3";
   };
 
   # Scripts
@@ -132,6 +144,7 @@ in
 
   services = {
     hypridle = {
+      enable = true;
       settings = {
         general = {
           after_sleep_cmd = "hyprctl dispatch dpms on";
@@ -164,14 +177,14 @@ in
     fish = {
       enable = true;
       plugins = [
-      { name = "grc"; src = pkgs.fishPlugins.grc.src; }
-      { name = "fzf-fish"; src = pkgs.fishPlugins.fzf-fish.src; }
-      { name = "plugin-git"; src = pkgs.fishPlugins.plugin-git.src; }
-      { name = "forgit"; src = pkgs.fishPlugins.forgit.src; }
+        { name = "grc"; src = pkgs.fishPlugins.grc.src; }
+        { name = "fzf-fish"; src = pkgs.fishPlugins.fzf-fish.src; }
+        { name = "plugin-git"; src = pkgs.fishPlugins.plugin-git.src; }
+        { name = "forgit"; src = pkgs.fishPlugins.forgit.src; }
       ];
       interactiveShellInit = ''
         set fish_greeting
-        fnm env --use-on-cd --shell fish | source
+        fish_vi_key_bindings
         ${pkgs.any-nix-shell}/bin/any-nix-shell fish --info-right | source
       '';
       shellAliases = {
@@ -287,6 +300,7 @@ in
       settings = {
         default_layout = "compact";
       };
+      enableFishIntegration = false;
     };
     zathura = {
       enable = true;

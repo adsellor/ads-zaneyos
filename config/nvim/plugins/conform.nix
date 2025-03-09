@@ -4,8 +4,9 @@
     #
     # https://nix-community.github.io/nixvim/NeovimOptions/index.html?highlight=extraplugins#extrapackages
     extraPackages = with pkgs; [
-      # Used to format Lua code
       stylua
+      prettierd
+      eslint_d
     ];
 
     # Autoformat
@@ -24,25 +25,21 @@
           # python = [ "isort "black" ];
           javascript = {
             __unkeyed-1 = "eslint_d";
-            __unkeyed-2 = "eslint";
             __unkeyed-3 = "prettierd";
             stop_after_first = true;
           };
           javascriptreact = {
             __unkeyed-1 = "eslint_d";
-            __unkeyed-2 = "eslint";
             __unkeyed-3 = "prettierd";
             stop_after_first = true;
           };
           typescript = {
             __unkeyed-1 = "eslint_d";
-            __unkeyed-2 = "eslint";
             __unkeyed-3 = "prettierd";
             stop_after_first = true;
           };
           typescriptreact = {
             __unkeyed-1 = "eslint_d";
-            __unkeyed-2 = "eslint";
             __unkeyed-3 = "prettierd";
             stop_after_first = true;
           };

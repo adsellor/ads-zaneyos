@@ -99,10 +99,10 @@
           enable = true;
         };
 
-        graphql = {
-          enable = true;
-          filetypes = [ "graphql" "gql" ];
-        };
+        # graphql = {
+        #   enable = true;
+        #   filetypes = [ "graphql" "gql" ];
+        # };
 
         zls = {
           enable = true;

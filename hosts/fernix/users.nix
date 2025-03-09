@@ -32,29 +32,15 @@ in
         jq
         fzf
         grc
-        go-task
-        typescript
-        element-desktop
-        eslint_d
-        eslint
-        prettierd
         any-nix-shell
         zathura
-        devbox
-        corepack
-        slack
-        nodePackages_latest.graphql-language-service-cli
         zig
-        fnm
         beekeeper-studio
         newsboat
         stremio
         gtypist
-        podman-tui
-        dive
-        podman-compose
-        transmission_4
         typora
+        tty-clock
       ];
     };
     # "newuser" = {

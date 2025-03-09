@@ -45,7 +45,7 @@ with lib;
           exec-once = killall -q swaync;sleep .5 && swaync
           exec-once = nm-applet --indicator
           exec-once = lxqt-policykit-agent
-          exec-once = sleep 1.5 && swww img /home/${username}/Pictures/Wallpapers/pixel-galaxy.png
+          exec-once = sleep 1.5 && swww img /home/${username}/Pictures/Wallpapers/sum-e.jpg
           exec-once = zen
           exec-once = sleep 1 && ${terminal}
           exec-once = sleep 1 && signal-desktop
