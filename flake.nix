@@ -43,12 +43,7 @@
     {
       nixosConfigurations = {
         "${linuxHost}" = nixpkgs.lib.nixosSystem {
-          specialArgs = {
-            inherit linuxSystem;
-            inherit inputs;
-            inherit username;
-            inherit linuxHost;
-          };
+          specialArgs = mkSpecialArgs linuxSystem;
           modules = [
             ./hosts/${linuxHost}/config.nix
             inputs.stylix.nixosModules.stylix
@@ -60,7 +55,9 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.backupFileExtension = "backup";
-              home-manager.users.${username} = import ./hosts/${linuxHost}/home.nix;
+              home-manager.users.${username} = { ... }: {
+                imports = [ ./home/linux/default.nix ];
+              };
             }
           ];
         };
