@@ -76,13 +76,6 @@ with lib;
             sensitivity = 0 # -1.0 - 1.0, 0 means no modification.
             accel_profile = flat
           }
-          windowrule = noborder,^(wofi)$
-          windowrule = center,^(wofi)$
-          windowrule = center,^(steam)$
-          windowrule = float, nm-connection-editor|blueman-manager
-          windowrule = float, swayimg|vlc|Viewnior|pavucontrol
-          windowrule = float, nwg-look|qt5ct|mpv
-          windowrule = float, zoom
           windowrulev2 = float, class:^(zen)$,title:^(Picture-in-Picture)$
           windowrulev2 = pin, class:^(zen)$,title:^(Picture-in-Picture)$
           windowrulev2 = opacity 1.0 override, class:^(zen)$,title:^(Picture-in-Picture)$

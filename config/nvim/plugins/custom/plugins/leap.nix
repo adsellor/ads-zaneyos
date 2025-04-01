@@ -9,7 +9,6 @@
       leap.opts.equivalence_classes = { ' \t\r\n', '([{', ')]}', '\'"`' }
       vim.keymap.set({ 'n', 'x', 'o' }, ',', '<Plug>(leap-forward)')
       vim.keymap.set({ 'n', 'x', 'o' }, ',,', '<Plug>(leap-backward)')
-      vim.keymap.set({ 'n', 'x', 'o' }, 'gs', '<Plug>(leap-from-window)')
 
       vim.api.nvim_create_autocmd('ColorScheme', {
         callback = function()

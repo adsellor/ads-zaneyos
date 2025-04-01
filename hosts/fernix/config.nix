@@ -80,8 +80,8 @@ in
     #   base01 =
     #     "1b1b1b"; # Lighter Background (Used for status bars, line number and folding marks)
     #   base02 = "2b2b2b"; # Selection Background
-    #   base03 = "#7b7c8c"; # Comments, Invisibles, Line Highlighting
-    #   base04 = "585b70"; # Dark Foreground (Used for status bars)
+    #   base03 = "#7b7c8c"; # Comments, Invisibles, Line Highlighting base04 = "585b70"; # Dark Foreground (Used for status bars)
+    #   base04 = "908caa";
     #   base05 = "fcfcfc"; # Default Foreground, Caret, Delimiters, Operators
     #   base06 = "f5e0dc"; # Light Foreground (Not often used)
     #   base07 = "b4befe"; # Light Background (Not often used)
@@ -100,30 +100,7 @@ in
     #   base0F =
     #     "f2cdcd"; # Deprecated, Opening/Closing Embedded Language Tags, e.g. <?php ?>
     # };
-
-    # E-INK
-    # base16Scheme = {
-    #   # Background and grayscale progression
-    #   base00 = "CCCCCC";  # Background white
-    #   base01 = "BEBEBE";  # Lighter gray
-    #   base02 = "B0B0B0";  # Light gray
-    #   base03 = "969696";  # Medium gray
-    #   base04 = "787878";  # Medium dark gray
-    #   base05 = "5A5A5A";  # Dark gray
-    #   base06 = "474747";  # Primary black
-    #   base07 = "333333";  # Secondary black
-    #   # Neutral tones based on primary colors
-    #   base08 = "4D4D4D";  # Slightly warmer black
-    #   base09 = "424242";  # Mixed neutral
-    #   base0A = "3D3D3D";  # Cooler dark tone
-    #   base0B = "383838";  # Deep neutral
-    #   base0C = "363636";  # Dark neutral
-    #   base0D = "353535";  # Very dark neutral
-    #   base0E = "343434";  # Almost secondary black
-    #   base0F = "333333";  # Secondary black match
-    # };
-
-    # E-INK cosmic mocha fusion
+    #
 
   base16Scheme = {
       base00 = "CCCCCC";  # Background white
@@ -144,7 +121,8 @@ in
       base0E = "353333";  # Near secondary black
       base0F = "333333";  # Secondary black
     };
-    polarity = "light";
+
+    polarity = "dark";
     opacity.terminal = 0.8;
     cursor.package = pkgs.bibata-cursors;
     cursor.name = "Bibata-Modern-Ice";

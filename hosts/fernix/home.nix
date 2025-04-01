@@ -188,7 +188,6 @@ in
         ${pkgs.any-nix-shell}/bin/any-nix-shell fish --info-right | source
       '';
       shellAliases = {
-        sv = "sudo nvim";
         cfig = "cd /home/zaven/zaneyos/ && nvim .";
         fr = "nh os switch --hostname ${host} /home/${username}/zaneyos";
         fu = "nh os switch --hostname ${host} --update /home/${username}/zaneyos";

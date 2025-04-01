@@ -41,6 +41,7 @@ in
         gtypist
         typora
         tty-clock
+        chromium
       ];
     };
     # "newuser" = {
