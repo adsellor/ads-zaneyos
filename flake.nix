@@ -17,43 +17,73 @@
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    nix-darwin = {
+      url = "github:nix-darwin/nix-darwin/master";
+      inputs.nixpkgs.follows = "nixpkgs-darwin";
+    };
   };
 
   outputs =
-    { nixpkgs, home-manager, chaotic, ... }@inputs:
+    { nixpkgs, nixpkgs-darwin, nix-darwin, home-manager, chaotic, ... }@inputs:
     let
-      system = "x86_64-linux";
-      host = "fernix";
+      linuxSystem = "x86_64-linux";
+      linuxHost = "fernix";
+
+      darwinHost = "fern";
+      darwinSystem = "aarch64-darwin";
+
       username = "zaven";
+
+      mkSpecialArgs = system: {
+           inherit system inputs username;
+           host = if system == linuxSystem then linuxHost else darwinHost;
+      };
     in
     {
       nixosConfigurations = {
-        "${host}" = nixpkgs.lib.nixosSystem {
+        "${linuxHost}" = nixpkgs.lib.nixosSystem {
           specialArgs = {
-            inherit system;
+            inherit linuxSystem;
             inherit inputs;
             inherit username;
-            inherit host;
+            inherit linuxHost;
           };
           modules = [
-            ./hosts/${host}/config.nix
+            ./hosts/${linuxHost}/config.nix
             inputs.stylix.nixosModules.stylix
             inputs.spicetify-nix.nixosModules.spicetify
             home-manager.nixosModules.home-manager
             chaotic.nixosModules.default
             {
-              home-manager.extraSpecialArgs = {
-                inherit username;
-                inherit inputs;
-                inherit host;
-              };
+              home-manager.extraSpecialArgs = mkSpecialArgs linuxSystem;
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.backupFileExtension = "backup";
-              home-manager.users.${username} = import ./hosts/${host}/home.nix;
+              home-manager.users.${username} = import ./hosts/${linuxHost}/home.nix;
             }
           ];
         };
       };
+
+    darwinConfigurations = {
+  "${darwinHost}" = nix-darwin.lib.darwinSystem {
+    system = darwinSystem;
+    specialArgs = mkSpecialArgs darwinSystem;
+    modules = [
+      ./hosts/${darwinHost}/config.nix
+      home-manager.darwinModules.home-manager
+      {
+        home-manager.extraSpecialArgs = mkSpecialArgs darwinSystem;
+        home-manager.useGlobalPkgs = true;
+        home-manager.useUserPackages = true;
+        home-manager.backupFileExtension = "backup";
+        home-manager.users.${username} = { ... }: {
+          imports = [ ./home/darwin/default.nix ];
+        };
+      }
+    ];
+  };
+    };
     };
 }
