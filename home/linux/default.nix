@@ -5,6 +5,7 @@
     ./hyprlock.nix
     ./hypridle.nix
     ./scripts.nix
+    ./ghostty.nix
     ../../config/emoji.nix
     ../../config/hyprland.nix
     ../../config/rofi/rofi.nix

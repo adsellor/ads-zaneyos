@@ -24,8 +24,6 @@ in
       shell = pkgs.fish;
       ignoreShellProgramCheck = true;
       packages = with pkgs; [
-        signal-desktop
-        telegram-desktop
         lazygit
         yazi
         obs-studio

@@ -12,7 +12,7 @@
       url = "github:VonHeikemen/fine-cmdline.nvim";
       flake = false;
     };
-    zen-browser.url = "github:0xc000022070/zen-browser-flake";
+    zen-browser.url = "github:adsellor/zen-browser-flake";
     nixvim = {
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -22,10 +22,20 @@
       url = "github:nix-darwin/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs-darwin";
     };
+    nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
+
+    homebrew-core = {
+      url = "github:homebrew/homebrew-core";
+      flake = false;
+    };
+    homebrew-cask = {
+      url = "github:homebrew/homebrew-cask";
+      flake = false;
+    };
   };
 
   outputs =
-    { nixpkgs, nixpkgs-darwin, nix-darwin, home-manager, chaotic, ... }@inputs:
+    { nixpkgs, nixpkgs-darwin, nix-darwin, home-manager, chaotic, nix-homebrew, homebrew-core, homebrew-cask, ... }@inputs:
     let
       linuxSystem = "x86_64-linux";
       linuxHost = "fernix";
@@ -36,8 +46,8 @@
       username = "zaven";
 
       mkSpecialArgs = system: {
-           inherit system inputs username;
-           host = if system == linuxSystem then linuxHost else darwinHost;
+        inherit system inputs username nix-homebrew homebrew-cask homebrew-core;
+        host = if system == linuxSystem then linuxHost else darwinHost;
       };
     in
     {
@@ -70,6 +80,7 @@
     modules = [
       ./hosts/${darwinHost}/config.nix
       home-manager.darwinModules.home-manager
+      nix-homebrew.darwinModules.nix-homebrew
       {
         home-manager.extraSpecialArgs = mkSpecialArgs darwinSystem;
         home-manager.useGlobalPkgs = true;

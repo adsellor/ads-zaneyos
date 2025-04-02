@@ -1,6 +1,5 @@
 { username, pkgs, inputs, ... }:
 let
-  inherit (import ./variables.nix) gitUsername gitEmail;
   spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.system};
 in
 {
@@ -14,10 +13,16 @@ in
     ./git.nix
     ./gh.nix
     ./newsboat.nix
-    ./ghostty.nix
     ./zathura.nix
+    ./ripgrep.nix
     ./zellij.nix
     inputs.spicetify-nix.homeManagerModules.spicetify
+  ];
+
+
+  home.packages = with pkgs; [
+    signal-desktop
+    telegram-desktop
   ];
 
   programs.spicetify = {

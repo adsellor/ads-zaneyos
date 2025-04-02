@@ -1,16 +1,43 @@
-{ pkgs, ... }:
+{ 
+pkgs
+, homebrew-core
+, homebrew-cask
+, inputs
+, ... }:
 
 {
   system.defaults.NSGlobalDomain.AppleShowAllExtensions = true;
   system.defaults.NSGlobalDomain.InitialKeyRepeat = 15;
   system.defaults.NSGlobalDomain.KeyRepeat = 2;
+  system.activationScripts.extraActivation.text = ''
+    softwareupdate --install-rosetta --agree-to-license
+  '';
   
   environment.systemPackages = with pkgs; [
     vim
     git
+    raycast
+    inputs.zen-browser.packages."${system}".default
   ];
-  
+
+  nix-homebrew = {
+    enable = true;
+    enableRosetta = true;
+    user = "zaven";
+    taps = {
+      "homebrew/homebrew-core" = homebrew-core;
+      "homebrew/homebrew-cask" = homebrew-cask;
+    };
+    mutableTaps = false;
+  };
+
+  homebrew.enable = true;
+  homebrew.casks = ["ghostty"];
+
+
   nix.package = pkgs.nix;
+  nixpkgs.config.allowUnfree = true;
+
   nix.settings.experimental-features = ["nix-command" "flakes"];
   
   programs.zsh.enable = true;
@@ -18,4 +45,36 @@
   networking.hostName = "fern";
   
   system.stateVersion = 5;
+
+  system.defaults.dock.autohide = true;
+  system.defaults.dock.persistent-apps = [
+    {
+      app = "/Applications/Nix Apps/Zen.app";
+    }
+    {
+      app = "/Applications/Ghostty.app/";
+    }
+    {
+      app = "/System/Applications/System Settings.app/";
+    }
+    {
+      spacer = {
+        small = true;
+      };
+    }
+    {
+      folder = "~/Work/";
+    }
+    {
+      folder = "~/Developer/";
+    }
+    {
+      spacer = {
+        small = true;
+      };
+    }
+    {
+      folder = "~/Downloads/";
+    }
+  ];
 }
