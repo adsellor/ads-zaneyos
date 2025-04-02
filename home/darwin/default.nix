@@ -2,6 +2,7 @@
 {
   imports = [
     ../base/default.nix
+    ./devbox.nix
   ];
 
   home.homeDirectory = lib.mkForce "/Users/${username}";

@@ -3,6 +3,7 @@ pkgs
 , homebrew-core
 , homebrew-cask
 , inputs
+, username
 , ... }:
 
 {
@@ -32,13 +33,13 @@ pkgs
   };
 
   homebrew.enable = true;
-  homebrew.casks = ["ghostty"];
+  homebrew.casks = ["ghostty" "docker"];
 
 
   nix.package = pkgs.nix;
   nixpkgs.config.allowUnfree = true;
 
-  nix.settings.experimental-features = ["nix-command" "flakes"];
+  nix.settings.experimental-features = ["nix-command" "flakes" ];
   
   programs.zsh.enable = true;
   
@@ -57,24 +58,25 @@ pkgs
     {
       app = "/System/Applications/System Settings.app/";
     }
-    {
-      spacer = {
-        small = true;
-      };
-    }
-    {
-      folder = "~/Work/";
-    }
-    {
-      folder = "~/Developer/";
-    }
-    {
-      spacer = {
-        small = true;
-      };
-    }
-    {
-      folder = "~/Downloads/";
-    }
   ];
+
+
+  programs.fish.enable = true;
+
+  environment.shells = [pkgs.fish];
+
+  users.users.${username} = {
+    shell = pkgs.fish;
+    packages = with pkgs; [
+      lazygit
+      yazi
+      jq
+      fzf
+      grc
+      any-nix-shell
+      zathura
+      zig
+      gtypist
+    ];
+  };
 }
