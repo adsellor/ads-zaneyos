@@ -1,10 +1,11 @@
 { 
-pkgs
+  pkgs
 , homebrew-core
 , homebrew-cask
 , inputs
 , username
-, ... }:
+, ... 
+}:
 
 {
   system.defaults.NSGlobalDomain.AppleShowAllExtensions = true;
@@ -79,4 +80,6 @@ pkgs
       gtypist
     ];
   };
+
+  security.pam.services.sudo_local.touchIdAuth = true;
 }
