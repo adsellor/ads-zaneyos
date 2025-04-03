@@ -34,7 +34,7 @@
   };
 
   homebrew.enable = true;
-  homebrew.casks = ["ghostty" "docker"];
+  homebrew.casks = ["ghostty" "docker" "stremio"];
 
 
   nix.package = pkgs.nix;
@@ -81,5 +81,12 @@
     ];
   };
 
+  system.defaults.dock = {
+        wvous-tl-corner = 4; # Desktop
+        wvous-br-corner = 11; # Dashboard
+        wvous-bl-corner = 10; # Sleep
+  };
   security.pam.services.sudo_local.touchIdAuth = true;
+  system.defaults.screensaver.askForPassword = true;
+  system.defaults.screensaver.askForPasswordDelay = 75;
 }
