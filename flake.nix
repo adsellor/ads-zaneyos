@@ -12,7 +12,7 @@
       url = "github:VonHeikemen/fine-cmdline.nvim";
       flake = false;
     };
-    zen-browser.url = "github:adsellor/zen-browser-flake";
+    zen-browser.url = "github:0xc000022070/zen-browser-flake";
     nixvim = {
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";

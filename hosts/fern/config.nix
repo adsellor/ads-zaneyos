@@ -19,7 +19,6 @@
     vim
     git
     raycast
-    inputs.zen-browser.packages."${system}".default
   ];
 
   nix-homebrew = {
@@ -34,7 +33,7 @@
   };
 
   homebrew.enable = true;
-  homebrew.casks = ["ghostty" "docker" "stremio"];
+  homebrew.casks = ["ghostty" "docker" "stremio" "zen-browser" "beekeeper-studio"];
 
 
   nix.package = pkgs.nix;
@@ -51,7 +50,7 @@
   system.defaults.dock.autohide = true;
   system.defaults.dock.persistent-apps = [
     {
-      app = "/Applications/Nix Apps/Zen.app";
+      app = "/Applications/Zen.app";
     }
     {
       app = "/Applications/Ghostty.app/";
