@@ -2,7 +2,6 @@
   pkgs
 , homebrew-core
 , homebrew-cask
-, inputs
 , username
 , ... 
 }:
@@ -19,6 +18,8 @@
     vim
     git
     raycast
+    xcodes
+    eza
   ];
 
   nix-homebrew = {
