@@ -8,7 +8,7 @@
         display_virtual_text = true;
         highlight_group = "Comment";
         message_template = "<summary> • <date> • <author>";
-        message_when_not_committed = "Don't bother committing it's gonna suck anyway :(";
+        message_when_not_committed = "";
         set_extmark_options = {
           priority = 7;
         };

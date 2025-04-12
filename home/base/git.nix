@@ -1,4 +1,4 @@
-_: 
+{...}: 
   let
     inherit (import ../../hosts/fern/variables.nix) gitUsername gitEmail;
   in
