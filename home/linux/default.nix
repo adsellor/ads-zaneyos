@@ -6,6 +6,7 @@
     ./hypridle.nix
     ./scripts.nix
     ./ghostty.nix
+    ./signal.nix
     ../../config/emoji.nix
     ../../config/hyprland.nix
     ../../config/rofi/rofi.nix
@@ -56,8 +57,6 @@
     la = "eza -lah --icons --grid --group-directories-first";
     ".." = "cd ..";
   };
-
-
 
   # Create XDG Dirs
   xdg = {

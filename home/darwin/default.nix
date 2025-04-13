@@ -3,10 +3,10 @@
   imports = [
     ../base/default.nix
     ./devbox.nix
+    ./signal.nix
   ];
 
   home.homeDirectory = lib.mkForce "/Users/${username}";
-
 
   programs.fish.shellAliases = {
     fr = "darwin-rebuild switch --flake /Users/${username}/Developer/ads-zaneyos#${host}";
