@@ -33,7 +33,6 @@ in
         any-nix-shell
         zathura
         zig
-        beekeeper-studio
         newsboat
         stremio
         gtypist
