@@ -19,12 +19,10 @@ in
     inputs.spicetify-nix.homeManagerModules.spicetify
   ];
 
-
   home.packages = with pkgs; [
-    signal-desktop
     telegram-desktop
+    signal-desktop-bin
   ];
-
 
   programs.spicetify = {
     enable = true;
