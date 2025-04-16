@@ -1,9 +1,9 @@
-{ 
+{
   pkgs
 , homebrew-core
 , homebrew-cask
 , username
-, ... 
+, ...
 }:
 
 {
@@ -13,7 +13,7 @@
   system.activationScripts.extraActivation.text = ''
     softwareupdate --install-rosetta --agree-to-license
   '';
-  
+
   environment.systemPackages = with pkgs; [
     vim
     git
@@ -37,16 +37,13 @@
   homebrew.enable = true;
   homebrew.casks = ["ghostty" "docker" "stremio" "zen-browser" "beekeeper-studio"];
 
-
   nix.package = pkgs.nix;
   nixpkgs.config.allowUnfree = true;
 
   nix.settings.experimental-features = ["nix-command" "flakes" ];
-  
-  programs.zsh.enable = true;
-  
+
   networking.hostName = "fern";
-  
+
   system.stateVersion = 5;
 
   system.defaults.dock.autohide = true;
@@ -61,7 +58,6 @@
       app = "/System/Applications/System Settings.app/";
     }
   ];
-
 
   programs.fish.enable = true;
 

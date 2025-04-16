@@ -38,6 +38,7 @@
      ./plugins/custom/plugins/toggleterm.nix
      ./plugins/custom/plugins/lazygit.nix
      ./plugins/custom/plugins/typescript-tools.nix
+     ./plugins/custom/plugins/octo.nix
   ];
 
   /*
