@@ -80,6 +80,8 @@
     modules = [
       ./hosts/${darwinHost}/config.nix
       home-manager.darwinModules.home-manager
+      inputs.stylix.darwinModules.stylix
+      inputs.spicetify-nix.darwinModules.spicetify
       nix-homebrew.darwinModules.nix-homebrew
       {
         home-manager.extraSpecialArgs = mkSpecialArgs darwinSystem;

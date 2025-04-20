@@ -1,7 +1,6 @@
 {pkgs, ...}: {
   programs.ghostty = {
-    enable = !pkgs.stdenv.isDarwin;
-    package = pkgs.ghostty;
+    enable = true;
   };
   home.file.".config/ghostty" = {
     source = ../../config/ghostty;
