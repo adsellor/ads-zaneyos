@@ -21,8 +21,8 @@
           };
           validate = {
             enable = true;
-            };
           };
+        };
       };
     };
   };

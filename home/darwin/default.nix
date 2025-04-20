@@ -8,6 +8,11 @@
 
   home.homeDirectory = lib.mkForce "/Users/${username}";
 
+  home.file.".config/ghostty" = {
+    source = ../../config/ghostty;
+    recursive = true;
+  };
+
   programs.fish.shellAliases = {
     fr = "darwin-rebuild switch --flake /Users/${username}/Developer/ads-zaneyos#${host}";
     cfig = "cd /Users/${username}/Developer/ads-zaneyos && nvim .";

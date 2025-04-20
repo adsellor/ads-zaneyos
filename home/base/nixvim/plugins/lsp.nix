@@ -139,6 +139,8 @@
             #};
           };
         };
+
+        tailwindcss.enable = true;
       };
 
       keymaps = {
