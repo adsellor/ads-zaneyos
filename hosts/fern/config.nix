@@ -167,7 +167,7 @@
       base0F = "333333";  # Secondary black
     };
 
-    polarity = "dark";
+    polarity = "light";
     opacity.terminal = 0.8;
     fonts = {
       monospace = {
