@@ -16,6 +16,7 @@ in
     ./zathura.nix
     ./ripgrep.nix
     ./zellij.nix
+    ./comma.nix
     inputs.spicetify-nix.homeManagerModules.spicetify
   ];
 
