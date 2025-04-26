@@ -17,6 +17,7 @@ in
     ./ripgrep.nix
     ./zellij.nix
     ./comma.nix
+    ./direnv.nix
     inputs.spicetify-nix.homeManagerModules.spicetify
   ];
 
