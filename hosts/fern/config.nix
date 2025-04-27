@@ -90,13 +90,20 @@
     ];
   };
 
-  system.defaults.dock = {
-        wvous-tl-corner = 4; # Desktop
-        wvous-br-corner = 11; # Dashboard
-        wvous-bl-corner = 10; # Sleep
-  };
   security.pam.services.sudo_local.touchIdAuth = true;
-  system.defaults.screensaver.askForPassword = true;
-  system.defaults.screensaver.askForPasswordDelay = 75;
 
+  system.defaults = {
+    dock = {
+      wvous-tl-corner = 4; # Desktop
+      wvous-br-corner = 11; # Dashboard
+      wvous-bl-corner = 10; # Sleep
+    };
+    screensaver = {
+      askForPassword = true;
+      askForPasswordDelay = 75;
+    };
+    finder = {
+      QuitMenuItem = true;
+    };
+  };
 }
