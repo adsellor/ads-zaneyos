@@ -69,3 +69,4 @@ unfocused-split-opacity = 0.5
 quick-terminal-position = center
 shell-integration-features = sudo
 
+macos-icon = glass

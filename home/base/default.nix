@@ -1,8 +1,4 @@
-{ username, pkgs, inputs, ... }:
-let
-  spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.stdenv.system};
-in
-{
+{ username, pkgs, inputs, ... }: {
   imports = [
     ./nixvim/default.nix
     ./bat.nix
@@ -27,11 +23,6 @@ in
 
   programs.spicetify = {
     enable = true;
-    enabledExtensions = with spicePkgs.extensions; [
-      adblockify
-       hidePodcasts
-       shuffle
-     ];
   };
 
   home.username = "${username}";
