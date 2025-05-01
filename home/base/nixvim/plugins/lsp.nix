@@ -1,13 +1,12 @@
 {pkgs, ...}: {
   programs.nixvim = {
-    # Dependencies
-    # { 'Bilal2453/luvit-meta', lazy = true },
-    #
-    #
-    # Allows extra capabilities providied by nvim-cmp
-    # https://nix-community.github.io/nixvim/plugins/cmp-nvim-lsp.html
-    plugins.cmp-nvim-lsp = {
+    plugins.blink-cmp = {
       enable = true;
+      settings = {
+        completion.documentation = {
+          auto_show = true;
+        };
+      };
     };
 
     plugins.luasnip.enable = true;
@@ -74,9 +73,11 @@
         clangd = {
          enable = true;
         };
-        # gopls = {
-        #  enable = true;
-        #}
+
+        gopls = {
+         enable = true;
+        };
+
         # pyright = {
         #  enable = true;
         #}

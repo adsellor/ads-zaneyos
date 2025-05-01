@@ -6,15 +6,18 @@
     # be extended to other languages as well. That's why it's called
     # kickstart.nixvim and not kitchen-sink.nixvim ;)
     # https://nix-community.github.io/nixvim/plugins/dap/index.html
+    plugins.dap = {
+      enable = true;
+    };
+
+    # Creates a beautiful debugger UI
     plugins.dap-ui = {
       enable = true;
 
+      # Set icons to characters that are more likely to work in every terminal.
+      # Feel free to remove or use ones that you like more! :)
+      # Don't feel like these are good choices.
       settings = {
-        # Creates a beautiful debugger UI
-
-        # Set icons to characters that are more likely to work in every terminal.
-        # Feel free to remove or use ones that you like more! :)
-        # Don't feel like these are good choices.
         icons = {
           expanded = "▾";
           collapsed = "▸";
@@ -34,16 +37,17 @@
             disconnect = "⏏";
           };
         };
-        # Add your own debuggers here
       };
     };
 
+    # Add your own debuggers here
     plugins.dap-go = {
       enable = true;
     };
 
     # https://nix-community.github.io/nixvim/keymaps/index.html
     keymaps = [
+      # Basic debugging keymaps, feel free to change to your liking!
       {
         mode = "n";
         key = "<F5>";

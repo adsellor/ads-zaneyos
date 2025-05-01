@@ -49,6 +49,7 @@
            "squeeze_blanks"
            "trim_whitespace"
           ];
+          go = [ "goimports" "gofmt" ];
         };
       };
     };

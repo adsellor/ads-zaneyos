@@ -16,7 +16,6 @@
     ./plugins/telescope.nix
     ./plugins/conform.nix
     ./plugins/lsp.nix
-    ./plugins/nvim-cmp.nix
     ./plugins/mini.nix
     ./plugins/treesitter.nix
 
@@ -39,6 +38,7 @@
      ./plugins/custom/plugins/lazygit.nix
      ./plugins/custom/plugins/typescript-tools.nix
      ./plugins/custom/plugins/octo.nix
+     ./plugins/custom/plugins/trouble.nix
   ];
 
   /*
