@@ -14,6 +14,7 @@
     ./zellij.nix
     ./comma.nix
     ./direnv.nix
+    ./jj.nix
     inputs.spicetify-nix.homeManagerModules.spicetify
   ];
 

@@ -58,8 +58,6 @@ in
     cursor.size = 24;
   };
 
-  # Extra Module Options
-  drivers.amdgpu.enable = false;
   drivers.nvidia.enable = true;
   drivers.nvidia-prime = {
     enable = true;
