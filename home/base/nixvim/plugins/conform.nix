@@ -50,6 +50,7 @@
            "trim_whitespace"
           ];
           go = [ "goimports" "gofmt" ];
+          zig = [ "zigfmt" ];
         };
       };
     };
