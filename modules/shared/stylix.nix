@@ -2,7 +2,9 @@
   stylix = {
     enable = true;
     autoEnable = true;
-    image = ../../config/wallpapers/pixel-galaxy.png;
+
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/rose-pine-moon.yaml";
+    # image = ../../config/wallpapers/1261770.png;
     # base16Scheme = {
     #   base00 = "232136";
     #   base01 = "2a273f";
@@ -48,29 +50,28 @@
     #     "f2cdcd"; # Deprecated, Opening/Closing Embedded Language Tags, e.g. <?php ?>
     # };
     #
-    base16Scheme = {
-      base00 = "F5F0ED"; # Background cream white
-      base01 = "E5DBD5"; # Warm cream tint
-      base02 = "D0C0B8"; # Light mocha cream
-      base03 = "B09C92"; # Medium mocha tone
-      base04 = "8A746A"; # Medium mocha dark
-      base05 = "664F45"; # Rich mocha brown
-      base06 = "4D3A30"; # Deep mocha brown
-      base07 = "2C211B"; # Dark espresso
-
-      # Enhanced mocha tones
-      base08 = "7D533D"; # Rich coffee brown
-      base09 = "A16B4F"; # Warm cinnamon mocha
-      base0A = "C58F6D"; # Caramel mocha
-      base0B = "5E392E"; # Dark roast
-      base0C = "492E24"; # Espresso blend
-      base0D = "3C251C"; # Dark chocolate mocha
-      base0E = "341A12"; # Coffee-black blend
-      base0F = "211108"; # Deep espresso black
-    };
-
-    polarity = "light";
-    opacity.terminal = 0.8;
+    # base16Scheme = {
+    #   base00 = "F5F0ED"; # Background cream white
+    #   base01 = "E5DBD5"; # Warm cream tint
+    #   base02 = "D0C0B8"; # Light mocha cream
+    #   base03 = "B09C92"; # Medium mocha tone
+    #   base04 = "8A746A"; # Medium mocha dark
+    #   base05 = "664F45"; # Rich mocha brown
+    #   base06 = "4D3A30"; # Deep mocha brown
+    #   base07 = "2C211B"; # Dark espresso
+    #
+    #   # Enhanced mocha tones
+    #   base08 = "7D533D"; # Rich coffee brown
+    #   base09 = "A16B4F"; # Warm cinnamon mocha
+    #   base0A = "C58F6D"; # Caramel mocha
+    #   base0B = "5E392E"; # Dark roast
+    #   base0C = "492E24"; # Espresso blend
+    #   base0D = "3C251C"; # Dark chocolate mocha
+    #   base0E = "341A12"; # Coffee-black blend
+    #   base0F = "211108"; # Deep espresso black
+    # };
+    polarity = "dark";
+    opacity.terminal = 0.7;
     fonts = {
       monospace = {
         package = pkgs.nerd-fonts.jetbrains-mono;
