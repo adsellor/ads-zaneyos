@@ -5,13 +5,14 @@
   {
   programs.jujutsu = {
     enable = true;
-    userName = "${gitUsername}";
-    userEmail = "${gitEmail}";
-    extraConfig = {
-      user.signingkey = "~/.ssh/id_ed25519.pub";
-      gpg.format = "ssh";
-      commit.gpgsign = "true";
-      tag.gpgsign = "true";
+    settings = {
+      user = {
+        name  = "${gitUsername}";
+        email  = "${gitEmail}";
+      };
+      ui = {
+        pager = "bat";
+      };
     };
   };
 }
