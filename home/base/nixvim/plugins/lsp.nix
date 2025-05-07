@@ -142,6 +142,8 @@
         };
 
         tailwindcss.enable = true;
+
+        marksman.enable = true;
       };
 
       keymaps = {

@@ -51,6 +51,7 @@
           ];
           go = [ "goimports" "gofmt" ];
           zig = [ "zigfmt" ];
+          rust  = ["rustfmt"];
         };
       };
     };
