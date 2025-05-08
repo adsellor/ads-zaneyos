@@ -4,7 +4,7 @@
   gitEmail = "22825451+adsellor@users.noreply.github.com";
 
   # Hyprland Settings
-  extraMonitorSettings = "monitor=DP-2,2560x1440@240,0x0,1";
+  extraMonitorSettings = "";
 
   # Waybar Settings
   clock24h = true;
