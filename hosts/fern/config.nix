@@ -41,13 +41,14 @@
     enable = true;
     global = {
       autoUpdate = true;
+      brewfile = true;
     };
     onActivation = {
       autoUpdate = true;
       upgrade = true;
-      cleanup = "zap";
+      cleanup = "uninstall";
     };
-    casks = ["ghostty" "docker" "stremio" "zen-browser" "beekeeper-studio"];
+    casks = ["ghostty" "docker" "stremio" "zen" "beekeeper-studio"];
   };
 
   nix.package = pkgs.nix;
