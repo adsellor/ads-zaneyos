@@ -1,6 +1,6 @@
 {
   gitUsername = "adsellor";
-  gitEmail = "22825451+adsellor@users.noreply.github.com";
+  gitEmail = "zaven@duck.com";
 
   browser = "zen"; # Set Default Browser (google-chrome-stable for google-chrome)
   terminal = "ghostty"; # Set Default System Terminal
