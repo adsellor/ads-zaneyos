@@ -15,6 +15,7 @@
     ./comma.nix
     ./direnv.nix
     ./jj.nix
+    ./transmission.nix
     inputs.spicetify-nix.homeManagerModules.spicetify
   ];
 
