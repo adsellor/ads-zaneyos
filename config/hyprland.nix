@@ -76,12 +76,13 @@ with lib;
             sensitivity = 0 # -1.0 - 1.0, 0 means no modification.
             accel_profile = flat
           }
-          windowrulev2 = float, class:^(zen)$,title:^(Picture-in-Picture)$
-          windowrulev2 = pin, class:^(zen)$,title:^(Picture-in-Picture)$
-          windowrulev2 = opacity 1.0 override, class:^(zen)$,title:^(Picture-in-Picture)$
-          windowrulev2 = size 20% 20%, class:^(zen)$,title:^(Picture-in-Picture)$
-          windowrulev2 = noinitialfocus, class:^(zen)$,title:^(Picture-in-Picture)$
-          windowrulev2 = keepaspectratio, class:^(zen)$,title:^(Picture-in-Picture)$
+          windowrulev2 = float, title:^(Picture-in-Picture)$
+          windowrulev2 = pin, title:^(Picture-in-Picture)$
+          windowrulev2 = opacity 1.0 override, title:^(Picture-in-Picture)$
+          windowrulev2 = size 20% 20%, title:^(Picture-in-Picture)$
+          windowrulev2 = move 100%-20% 60, title:^(Picture-in-Picture)$
+          windowrulev2 = noinitialfocus, title:^(Picture-in-Picture)$
+          windowrulev2 = keepaspectratio, title:^(Picture-in-Picture)$
           windowrulev2 = workspace 2, class:^(${terminal})$
           windowrulev2 = workspace 1, class:^(zen)$
           windowrulev2 = workspace 1, class:^(zen)$
