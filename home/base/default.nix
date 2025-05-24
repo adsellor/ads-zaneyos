@@ -16,6 +16,7 @@
     ./direnv.nix
     ./jj.nix
     ./transmission.nix
+    ./qutebrowser.nix
     inputs.spicetify-nix.homeManagerModules.spicetify
   ];
 
