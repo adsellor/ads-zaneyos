@@ -10,6 +10,7 @@
   imports = [
     ../../modules/shared/stylix.nix
   ];
+  system.primaryUser = "zaven";
   system.defaults.NSGlobalDomain.AppleShowAllExtensions = true;
   system.defaults.NSGlobalDomain.InitialKeyRepeat = 15;
   system.defaults.NSGlobalDomain.KeyRepeat = 2;
