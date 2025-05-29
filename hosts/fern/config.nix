@@ -61,18 +61,6 @@
 
   system.stateVersion = 5;
 
-  system.defaults.dock.autohide = true;
-  system.defaults.dock.persistent-apps = [
-    {
-      app = "/Applications/Zen.app";
-    }
-    {
-      app = "/Applications/Ghostty.app/";
-    }
-    {
-      app = "/System/Applications/System Settings.app/";
-    }
-  ];
 
   programs.fish.enable = true;
 
@@ -96,9 +84,21 @@
 
   system.defaults = {
     dock = {
+      autohide  = true;
       wvous-tl-corner = 4; # Desktop
       wvous-br-corner = 11; # Dashboard
       wvous-bl-corner = 10; # Sleep
+      persistent-apps = [
+    	{
+    	  app = "/Applications/Zen.app";
+    	}
+    	{
+    	  app = "/Applications/Ghostty.app/";
+    	}
+    	{
+    	  app = "/System/Applications/System Settings.app/";
+    	}
+      ];
     };
     screensaver = {
       askForPassword = true;

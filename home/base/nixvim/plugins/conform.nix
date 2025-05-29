@@ -21,8 +21,6 @@
           '';
         formatters_by_ft = {
           lua = ["stylua"];
-          # Conform can also run multiple formatters sequentially
-          # python = [ "isort "black" ];
           javascript = {
             __unkeyed-1 = "eslint_d";
             __unkeyed-3 = "prettierd";

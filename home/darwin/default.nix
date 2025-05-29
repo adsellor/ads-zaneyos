@@ -14,7 +14,7 @@
   };
 
   programs.fish.shellAliases = {
-    fr = "darwin-rebuild switch --flake /Users/${username}/Developer/ads-zaneyos#${host}";
+    fr = "sudo darwin-rebuild switch --flake /Users/${username}/Developer/ads-zaneyos#${host}";
     cfig = "cd /Users/${username}/Developer/ads-zaneyos && nvim .";
     fu = "darwin-rubild switch --hostname ${host} --update /Users/${username}/Developer/ads-zaneyos";
     ncg = "nix-collect-garbage --delete-old && sudo nix-collect-garbage -d";

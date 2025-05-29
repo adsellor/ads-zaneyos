@@ -7,12 +7,7 @@
     home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     stylix.url = "github:danth/stylix";
-    spicetify-nix = {
-      type = "github";
-      owner = "Gerg-L";
-      repo = "spicetify-nix";
-      ref = "44ed9eb";
-    };
+    spicetify-nix.url = "github:Gerg-L/spicetify-nix";
     fine-cmdline = {
       url = "github:VonHeikemen/fine-cmdline.nvim";
       flake = false;
@@ -86,7 +81,6 @@
       ./hosts/${darwinHost}/config.nix
       home-manager.darwinModules.home-manager
       inputs.stylix.darwinModules.stylix
-      inputs.spicetify-nix.darwinModules.spicetify
       nix-homebrew.darwinModules.nix-homebrew
       {
         home-manager.extraSpecialArgs = mkSpecialArgs darwinSystem;
