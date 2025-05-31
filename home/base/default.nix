@@ -16,13 +16,16 @@
     ./direnv.nix
     ./jj.nix
     ./transmission.nix
-    # inputs.spicetify-nix.homeManagerModules.spicetify
+    inputs.spicetify-nix.homeManagerModules.spicetify
   ];
 
   home.packages = with pkgs; [
     telegram-desktop
-    # spotify
   ];
+
+  programs.spicetify = {
+    enable = true;
+  };
 
   home.username = "${username}";
   home.stateVersion = "23.11";
