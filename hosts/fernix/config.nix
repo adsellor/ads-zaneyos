@@ -218,6 +218,7 @@ in
     gnu-shepherd
     vulkanPackages_latest.vulkan-extension-layer
     vulkanPackages_latest.vulkan-tools
+    keymapp
   ];
 
   fonts = {
@@ -327,10 +328,15 @@ in
   hardware.logitech.wireless.enable = false;
   hardware.logitech.wireless.enableGraphical = false;
 
+
   # Bluetooth Support
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
   services.blueman.enable = true;
+
+  # Zsa keybord stuff
+  hardware.keyboard.zsa.enable = true;
+
 
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
