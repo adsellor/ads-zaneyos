@@ -3,12 +3,13 @@
 , homebrew-core
 , homebrew-cask
 , username
+, lib
 , ...
 }:
 
 {
   imports = [
-    ../../modules/shared/stylix.nix
+ ../../modules/shared/stylix.nix
   ];
   system.primaryUser = "zaven";
   system.defaults.NSGlobalDomain.AppleShowAllExtensions = true;
@@ -47,7 +48,7 @@
     onActivation = {
       autoUpdate = true;
       upgrade = true;
-      cleanup = "uninstall";
+      cleanup = "zap";
     };
     casks = ["ghostty" "docker" "stremio" "zen" "beekeeper-studio"];
   };
@@ -61,11 +62,12 @@
 
   system.stateVersion = 5;
 
-
   programs.fish.enable = true;
 
   environment.shells = [pkgs.fish];
 
+  users.knownUsers = lib.mkForce [];
+  users.knownGroups = lib.mkForce [];
   users.users.${username} = {
     shell = pkgs.fish;
     packages = with pkgs; [
