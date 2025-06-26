@@ -19,9 +19,9 @@
     inputs.spicetify-nix.homeManagerModules.spicetify
   ];
 
-  # home.packages = with pkgs; [
-  #   telegram-desktop
-  # ];
+  home.packages = with pkgs; [
+    telegram-desktop
+  ];
 
   programs.spicetify = {
     enable = true;

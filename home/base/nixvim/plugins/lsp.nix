@@ -78,9 +78,9 @@
          enable = true;
         };
 
-        # pyright = {
-        #  enable = true;
-        #}
+        pyright = {
+         enable = true;
+        };
 
         nil_ls = {
           enable = true;
@@ -109,7 +109,11 @@
           enable = true;
         };
 
-        # ts_ls = {
+        ts_ls = {
+          enable = true;
+        };
+
+        # denols = {
         #   enable = true;
         # };
         # ...etc. See `https://nix-community.github.io/nixvim/plugins/lsp` for a list of pre-configured LSPs

@@ -7,6 +7,8 @@
       stylua
       prettierd
       eslint_d
+      black
+      isort
     ];
 
     # Autoformat
@@ -50,6 +52,7 @@
           go = [ "goimports" "gofmt" ];
           zig = [ "zigfmt" ];
           rust  = ["rustfmt"];
+          python = ["isort" "black"];
         };
       };
     };

@@ -48,9 +48,8 @@
     onActivation = {
       autoUpdate = true;
       upgrade = true;
-      cleanup = "zap";
     };
-    casks = ["ghostty" "docker" "stremio" "zen" "beekeeper-studio"];
+    casks = ["ghostty"  "stremio" "zen" "beekeeper-studio" "docker"];
   };
 
   nix.package = pkgs.nix;
