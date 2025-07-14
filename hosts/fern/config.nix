@@ -25,7 +25,7 @@
     raycast
     xcodes
     eza
-    uutils-coreutils
+    apple-sdk
   ];
 
   nix-homebrew = {
