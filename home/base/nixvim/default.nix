@@ -39,6 +39,7 @@
      ./plugins/custom/plugins/typescript-tools.nix
      ./plugins/custom/plugins/octo.nix
      ./plugins/custom/plugins/trouble.nix
+     ./plugins/custom/plugins/remote-nvim.nix
   ];
 
   /*
@@ -121,7 +122,6 @@
   programs.nixvim = {
     enable = true;
     defaultEditor = true;
-    clipboard.providers.wl-copy.enable = true;
 
     # You can easily change to a different colorscheme.
     # Add your colorscheme here and enable it.
