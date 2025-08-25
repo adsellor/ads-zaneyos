@@ -216,8 +216,9 @@ in
     virtualgl
     mesa
     gnu-shepherd
-    vulkanPackages_latest.vulkan-extension-layer
-    vulkanPackages_latest.vulkan-tools
+    vulkan-extension-layer
+    vulkan-tools
+    vulkan-headers
     keymapp
   ];
 
@@ -263,7 +264,6 @@ in
     };
     greetd = {
       enable = true;
-      vt = 3;
       settings = {
         default_session = {
           # Wayland Desktop Manager is installed only for user ryan via home-manager!
@@ -328,7 +328,6 @@ in
   hardware.logitech.wireless.enable = false;
   hardware.logitech.wireless.enableGraphical = false;
 
-
   # Bluetooth Support
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
@@ -336,7 +335,6 @@ in
 
   # Zsa keybord stuff
   hardware.keyboard.zsa.enable = true;
-
 
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
