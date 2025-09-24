@@ -138,6 +138,7 @@ in
   };
 
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.cudaSupport = true;
   nixpkgs.overlays = [
      (final: prev: {
       _7zz = prev._7zz.override { useUasm = true; };
@@ -202,7 +203,7 @@ in
     pavucontrol
     tree
     spotify
-    greetd.tuigreet
+    tuigreet
     firefox
     inputs.zen-browser.packages."${system}".default
     gcc
@@ -220,6 +221,8 @@ in
     vulkan-tools
     vulkan-headers
     keymapp
+    cudaPackages.cudatoolkit
+    (callPackage ../../packages/stremio.nix {})
   ];
 
   fonts = {
@@ -311,6 +314,7 @@ in
     };
     rpcbind.enable = false;
     nfs.server.enable = false;
+    scx.enable = true;
   };
   systemd.services.flatpak-repo = {
     path = [ pkgs.flatpak ];

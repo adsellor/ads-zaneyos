@@ -34,7 +34,6 @@ in
         zathura
         zig
         newsboat
-        stremio
         gtypist
         typora
         tty-clock

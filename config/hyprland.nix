@@ -91,10 +91,6 @@ with lib;
           windowrulev2 = workspace special:one, class:^(telegram-desktop)$
           windowrulev2 = workspace special:one, class:^(org.telegram.desktop)$
           windowrulev2 = workspace special:two, class:^(slack)$
-          gestures {
-            workspace_swipe = true
-            workspace_swipe_fingers = 3
-          }
           misc {
             initial_workspace_tracking = true
             mouse_move_enables_dpms = true
