@@ -16,7 +16,7 @@
   programs.fish.shellAliases = {
     fr = "sudo darwin-rebuild switch --flake /Users/${username}/Developer/ads-zaneyos#${host}";
     cfig = "cd /Users/${username}/Developer/ads-zaneyos && nvim .";
-    fu = "cd /Users/${username}/Developer/ads-zaneyos && nix flake update && fr";
+    fu = "cd /Users/${username}/Developer/ads-zaneyos && sudo nix flake update && fr";
     ncg = "nix-collect-garbage --delete-old && sudo nix-collect-garbage -d";
     cat = "bat";
     ls = "eza --icons";
