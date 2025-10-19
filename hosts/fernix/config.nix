@@ -62,7 +62,7 @@ in
   drivers.nvidia-prime = {
     enable = true;
     intelBusID = "PCI:0:2:0";
-    nvidiaBusID = "PCI:1:0:0";
+    nvidiaBusID = "PCI:01:0:0";
   };
   drivers.intel.enable = true;
   vm.guest-services.enable = false;
@@ -135,6 +135,8 @@ in
     nix-ld = {
       enable = true;
     };
+    gamemode.enable = true;
+    gamescope.enable = true;
   };
 
   nixpkgs.config.allowUnfree = true;
@@ -214,7 +216,6 @@ in
     gcc
     coolercontrol.coolercontrol-gui
     ghostty
-    virtualgl
     mesa
     gnu-shepherd
     vulkan-extension-layer
@@ -223,7 +224,11 @@ in
     keymapp
     cudaPackages.cudatoolkit
     addDriverRunpath
+    libGL
+    xwayland
+    wayback-x11
     (callPackage ../../packages/stremio.nix {})
+    inputs.hyprsession.packages."${pkgs.system}".default
   ];
 
   fonts = {

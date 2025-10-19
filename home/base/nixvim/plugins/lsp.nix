@@ -105,9 +105,9 @@
         #   filetypes = [ "graphql" "gql" ];
         # };
 
-        zls = {
-          enable = true;
-        };
+        # zls = {
+        #   enable = true;
+        # };
         #
         # ts_ls = {
         #   enable = true;

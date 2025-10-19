@@ -76,7 +76,6 @@
       fzf
       grc
       any-nix-shell
-      zathura
       gtypist
     ];
   };

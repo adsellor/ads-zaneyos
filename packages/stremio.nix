@@ -98,10 +98,10 @@ rustPlatform.buildRustPackage (finalAttrs: {
     cp $src/data/com.stremio.Stremio.desktop $out/share/applications/com.stremio.Stremio.desktop
     cp $src/data/icons/com.stremio.Stremio.svg $out/share/icons/hicolor/scalable/apps/com.stremio.Stremio.svg
 
-
     wrapProgram $out/bin/stremio \
        --prefix LD_LIBRARY_PATH : ${lib.makeLibraryPath [ libappindicator ]} \
-       --prefix PATH : ${lib.makeBinPath [ nodejs ]}'';
+       --prefix PATH : ${lib.makeBinPath [ nodejs ]}
+    '';
 
   env.CEF_PATH = cef-path;
 

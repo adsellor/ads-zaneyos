@@ -41,18 +41,14 @@ with lib;
           exec-once = dbus-update-activation-environment --systemd --all
           exec-once = systemctl --user import-environment QT_QPA_PLATFORMTHEME WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
           exec-once = killall -q swww;sleep .5 && swww-daemon
-          exec-once = killall -q waybar;sleep .5 && waybar
-          exec-once = killall -q swaync;sleep .5 && swaync
-          exec-once = nm-applet --indicator
+          # exec-once = killall -q waybar;sleep .5 && waybar
+          # exec-once = killall -q swaync;sleep .5 && swaync
+          # exec-once = nm-applet --indicator
           exec-once = lxqt-policykit-agent
           exec-once = sleep 1.5 && swww img /home/${username}/Pictures/Wallpapers/galaxy.png
-          exec-once = zen
-          exec-once = sleep 1 && ${terminal}
-          exec-once = sleep 1 && signal-desktop
-          exec-once = sleep 1 && telegram-desktop
-          exec-once = sleep 1 && spotify
           exec-once = auto-dnd
           monitor=,2560x1440@240,auto,1
+          exec-once = hyprsession
           ${extraMonitorSettings}
           general {
             gaps_in = 6
@@ -65,9 +61,9 @@ with lib;
           }
           input {
             kb_layout = ${keyboardLayout}
-            kb_variant = dvp,phonetic,
+            kb_variant = dvp,phonetic
             kb_options = grp:ctrl_space_toggle
-            follow_mouse = 1
+            follow_mouse = 0
             touchpad {
               natural_scroll = true
               disable_while_typing = true
@@ -76,8 +72,8 @@ with lib;
             sensitivity = 0 # -1.0 - 1.0, 0 means no modification.
             accel_profile = flat
           }
-          windowrulev2 = float, title:^(Picture-in-Picture)$
-          windowrulev2 = pin, title:^(Picture-in-Picture)$
+          windowrulev2 = float, silent, title:^(Picture-in-Picture)$
+          windowrulev2 = pin, silent, title:^(Picture-in-Picture)$
           windowrulev2 = opacity 1.0 override, title:^(Picture-in-Picture)$
           windowrulev2 = size 20% 20%, title:^(Picture-in-Picture)$
           windowrulev2 = move 100%-20% 60, title:^(Picture-in-Picture)$
@@ -86,7 +82,6 @@ with lib;
           windowrulev2 = workspace 2, class:^(${terminal})$
           windowrulev2 = workspace 1, class:^(zen)$
           windowrulev2 = workspace 1, class:^(zen)$
-          windowrulev2 = workspace special:one, class:^(Spotify)$
           windowrulev2 = workspace special:one, class:^(Signal)$
           windowrulev2 = workspace special:one, class:^(telegram-desktop)$
           windowrulev2 = workspace special:one, class:^(org.telegram.desktop)$
@@ -112,7 +107,7 @@ with lib;
             animation = workspaces, 0, 5, wind
           }
           decoration {
-            rounding = 10
+            rounding = 20
             shadow {
               enabled = true
               range = 4
@@ -131,6 +126,13 @@ with lib;
             hyprtrails {
             }
           }
+          plugin {
+            csgo-vulkan-fix {
+              res_w = 1920
+              res_h = 1440
+            }
+          }
+
           dwindle {
             pseudotile = true
             preserve_split = true
@@ -142,7 +144,7 @@ with lib;
           bind = ${modifier}SHIFT,N,exec,swaync-client -rs
           bind = ${modifier},W,exec,${browser}
           bind = ${modifier},E,exec,emopicker9000
-          bind = ${modifier},S,exec,screenshootin
+          bind = ${modifier}SHIFT,S,exec,screenshootin
           bind = ${modifier},D,exec,discord
           bind = ${modifier},O,exec,obs
           bind = ${modifier},C,exec,hyprpicker -a
@@ -156,7 +158,6 @@ with lib;
           bind = ${modifier}SHIFT,I,togglesplit,
           bind = ${modifier},F,fullscreen,
           bind = ${modifier}SHIFT,F,togglefloating,
-          bind = ${modifier}SHIFT,C,exit,
           bind = ${modifier}SHIFT,left,movewindow,l
           bind = ${modifier}SHIFT,right,movewindow,r
           bind = ${modifier}SHIFT,up,movewindow,u

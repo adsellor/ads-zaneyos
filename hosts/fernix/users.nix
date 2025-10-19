@@ -1,5 +1,6 @@
 { pkgs
 , username
+, inputs
 , ...
 }:
 
@@ -20,6 +21,7 @@ in
         "lp"
         "podman"
         "docker"
+        "gamemode"
       ];
       shell = pkgs.fish;
       ignoreShellProgramCheck = true;
@@ -31,13 +33,14 @@ in
         fzf
         grc
         any-nix-shell
-        zathura
         zig
         newsboat
         gtypist
         typora
         tty-clock
         chromium
+        mangohud
+        hyprlandPlugins.csgo-vulkan-fix
       ];
     };
     # "newuser" = {

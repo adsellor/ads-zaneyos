@@ -1,6 +1,5 @@
 {
   lib,
-  pkgs,
   config,
   ...
 }:
@@ -17,7 +16,7 @@ in
     };
     nvidiaBusID = mkOption {
       type = types.str;
-      default = "PCI:1:0:0";
+      default = "PCI:01:0:0";
     };
   };
 

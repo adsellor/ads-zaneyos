@@ -1,4 +1,4 @@
-{ username, lib, host, pkgs, ... }:
+{ username, lib, host, pkgs, inputs, ... }:
 {
   imports = [
     ../base/default.nix
@@ -7,6 +7,7 @@
     ./scripts.nix
     ./ghostty.nix
     ./signal.nix
+    ./caelestia.nix
     ../../config/emoji.nix
     ../../config/hyprland.nix
     ../../config/rofi/rofi.nix
@@ -15,6 +16,7 @@
     ../../config/swaync.nix
     ../../config/waybar.nix
     ../../config/wlogout.nix
+    inputs.caelestia-shell.homeManagerModules.default
   ];
 
   home.username = "${username}";
