@@ -1,6 +1,6 @@
 _: {
   programs.newsboat = {
-    enable = true;
+    enable = false;
     browser = "open";
   };
 

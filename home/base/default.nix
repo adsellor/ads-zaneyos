@@ -24,7 +24,7 @@
   ];
 
   programs.spicetify = {
-    enable = true;
+    enable = false;
   };
 
   home.username = "${username}";
