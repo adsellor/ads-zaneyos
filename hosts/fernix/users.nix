@@ -1,6 +1,5 @@
 { pkgs
 , username
-, inputs
 , ...
 }:
 
@@ -22,6 +21,7 @@ in
         "podman"
         "docker"
         "gamemode"
+        "video"
       ];
       shell = pkgs.fish;
       ignoreShellProgramCheck = true;
@@ -40,7 +40,9 @@ in
         tty-clock
         chromium
         mangohud
-        hyprlandPlugins.csgo-vulkan-fix
+        discord
+        spotify
+        ghostty
       ];
     };
     # "newuser" = {

@@ -72,13 +72,6 @@ with lib;
             sensitivity = 0 # -1.0 - 1.0, 0 means no modification.
             accel_profile = flat
           }
-          windowrulev2 = float, silent, title:^(Picture-in-Picture)$
-          windowrulev2 = pin, silent, title:^(Picture-in-Picture)$
-          windowrulev2 = opacity 1.0 override, title:^(Picture-in-Picture)$
-          windowrulev2 = size 20% 20%, title:^(Picture-in-Picture)$
-          windowrulev2 = move 100%-20% 60, title:^(Picture-in-Picture)$
-          windowrulev2 = noinitialfocus, title:^(Picture-in-Picture)$
-          windowrulev2 = keepaspectratio, title:^(Picture-in-Picture)$
           windowrulev2 = workspace 2, class:^(${terminal})$
           windowrulev2 = workspace 1, class:^(zen)$
           windowrulev2 = workspace 1, class:^(zen)$
@@ -124,12 +117,6 @@ with lib;
           }
           plugin {
             hyprtrails {
-            }
-          }
-          plugin {
-            csgo-vulkan-fix {
-              res_w = 1920
-              res_h = 1440
             }
           }
 

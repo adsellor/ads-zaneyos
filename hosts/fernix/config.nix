@@ -4,6 +4,7 @@
 , username
 , options
 , inputs
+, lib
 , ...
 }:
 let
@@ -33,7 +34,7 @@ in
       "vm.max_map_count" = 2147483642;
     };
     # Bootloader.
-    loader.systemd-boot.enable = true;
+    loader.systemd-boot.enable = lib.mkForce false;
     loader.efi.canTouchEfiVariables = true;
     # Make /tmp a tmpfs
     tmp = {
@@ -50,6 +51,10 @@ in
       magicOrExtension = ''\x7fELF....AI\x02'';
     };
     plymouth.enable = true;
+    lanzaboote ={
+      enable = true;
+      pkiBundle = "/var/lib/sbctl";
+    };
   };
 
   stylix = {
@@ -103,7 +108,6 @@ in
   };
 
   programs = {
-    firefox.enable = true;
     dconf.enable = true;
     seahorse.enable = true;
     fuse.userAllowOther = true;
@@ -129,7 +133,6 @@ in
     };
     coolercontrol = {
       enable = true;
-      nvidiaSupport = true;
     };
 
     nix-ld = {
@@ -174,7 +177,6 @@ in
     pciutils
     ffmpeg
     socat
-    cowsay
     ripgrep
     lshw
     bat
@@ -192,7 +194,6 @@ in
     playerctl
     nh
     nixfmt-rfc-style
-    discord
     libvirt
     swww
     grim
@@ -204,18 +205,10 @@ in
     gimp
     pavucontrol
     tree
-    spotify
     tuigreet
-    firefox
     inputs.zen-browser.packages."${system}".default
-    gcc
-    bun
-    rustup
     libcap
-    go
-    gcc
     coolercontrol.coolercontrol-gui
-    ghostty
     mesa
     gnu-shepherd
     vulkan-extension-layer
@@ -229,11 +222,13 @@ in
     wayback-x11
     (callPackage ../../packages/stremio.nix {})
     inputs.hyprsession.packages."${pkgs.system}".default
+    kdePackages.partitionmanager
+    sbctl
   ];
 
   fonts = {
     packages = with pkgs; [
-      noto-fonts-emoji
+      noto-fonts-color-emoji
       noto-fonts-cjk-sans
       font-awesome
       # Commenting Symbola out to fix install this will need to be fixed or an alternative found.

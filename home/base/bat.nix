@@ -1,6 +1,7 @@
-{pkgs, ...}: {
+{pkgs-stable, pkgs, ...}: {
   programs.bat = {
-    enable = true;
+    enable = false;
+    package = pkgs.bat;
     config = {
       pager = "less -FR";
     };

@@ -3,6 +3,11 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.05";
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote/v0.4.3";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -40,7 +45,19 @@
   };
 
   outputs =
-    { nixpkgs, nixpkgs-darwin, nix-darwin, home-manager, chaotic, nix-homebrew, homebrew-core, homebrew-cask, ... }@inputs:
+    {
+      nixpkgs,
+      nixpkgs-stable,
+      nixpkgs-darwin,
+      nix-darwin,
+      home-manager,
+      chaotic,
+      nix-homebrew,
+      homebrew-core,
+      homebrew-cask,
+      lanzaboote,
+      ...
+    }@inputs:
     let
       linuxSystem = "x86_64-linux";
       linuxHost = "fernix";
@@ -53,6 +70,10 @@
       mkSpecialArgs = system: {
         inherit system inputs username nix-homebrew homebrew-cask homebrew-core;
         host = if system == linuxSystem then linuxHost else darwinHost;
+        pkgs-stable = import nixpkgs-stable {
+          inherit system;
+          config.allowUnfree = true;
+        };
       };
     in
     {
@@ -64,6 +85,7 @@
             inputs.stylix.nixosModules.stylix
             inputs.spicetify-nix.nixosModules.spicetify
             home-manager.nixosModules.home-manager
+            lanzaboote.nixosModules.lanzaboote
             chaotic.nixosModules.default
             {
               home-manager.extraSpecialArgs = mkSpecialArgs linuxSystem;
