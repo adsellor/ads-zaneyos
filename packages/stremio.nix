@@ -1,81 +1,47 @@
 {
   lib,
-  stdenv,
   rustPlatform,
   fetchFromGitHub,
   openssl,
   pkg-config,
-  gtk3,
+  gtk4,
   mpv,
   libappindicator,
-  libcef,
   makeWrapper,
   nodejs,
+  webkitgtk_6_0,
+  libadwaita,
+  libepoxy,
+  gettext,
   # fetchurl,
   ...
 }:
-let
-  # cef-rs expects a specific directory layout
-  # Copied from https://github.com/NixOS/nixpkgs/pull/428206 because im lazy
-  cef-path = stdenv.mkDerivation {
-    pname = "cef-path";
-    version = libcef.version;
-    dontUnpack = true;
-    installPhase = ''
-      mkdir -p "$out"
-      find ${libcef}/lib -type f -name "*" -exec cp {} $out/ \;
-      find ${libcef}/libexec -type f -name "*" -exec cp {} $out/ \;
-      cp -r ${libcef}/share/cef/* $out/
-      mkdir -p "$out/include"
-      cp -r ${libcef}/include/* "$out/include/"
-    '';
-    postFixup = ''
-      strip $out/*.so*
-    '';
-  };
-
-  # NOTE stremio downloads server.js into XDG_DATA_DIR. Packaging it is not required.
-  # I'm patching this because I don't enjoy stremio downloading code at runtime.
-  # This and the postPatch are not needed if you're okay with stremio downloading server.js at runtime
-  # Latest server.js version found at https://www.strem.io/updater/server/check
-  # server = fetchurl rec {
-  #   pname = "stremio-server";
-  #   version = "4.20.11";
-  #   url = "https://dl.strem.io/server/v${version}/desktop/server.js";
-  #   hash = "sha256-2QCwUlusNTGqbOmOGjyKOx0bHaoGmn9vy93qViXx95E=";
-  #   meta.license = lib.licenses.unfree;
-  # };
-
-in
 rustPlatform.buildRustPackage (finalAttrs: {
   name = "stremio-linux-shell";
-  version = "1.0.0-beta.11";
+  version = "1.0.0-beta.12";
 
   src = fetchFromGitHub {
     owner = "Stremio";
     repo = "stremio-linux-shell";
-    tag = "v${finalAttrs.version}";
-    hash = "sha256-FNAeur5esDqBoYlmjUO6jdi1eC83ynbLxbjH07QZ++E=";
+    rev = "master";
+    hash = "sha256-07b7Ye75zoZ46Ar8DsL8+Q1RjtbJ4DmuLvXe8k+R4IA=";
   };
 
-  cargoHash = "sha256-9/28BCG51jPnKXbbzzNp7KQLMkLEugFQfwszRR9kmUw=";
-
-  # The build scripts tries to download CEF binaries by default.
-  # Probably overkill since setting CEF_PATH should skip downloading binaries.
-  buildFeatures = [
-    "offline-build"
-  ];
+  cargoHash = "sha256-BgzOAU9TcUom8aVgFxXebUsZV2KprQeYIgJ8Mrcs/GA=";
 
   buildInputs = [
     openssl
-    gtk3
+    gtk4
     mpv
-    libcef
+    webkitgtk_6_0
+    libadwaita
+    libepoxy
   ];
 
   nativeBuildInputs = [
     makeWrapper
     pkg-config
+    gettext
   ];
 
   #postPatch = ''
@@ -102,8 +68,6 @@ rustPlatform.buildRustPackage (finalAttrs: {
        --prefix LD_LIBRARY_PATH : ${lib.makeLibraryPath [ libappindicator ]} \
        --prefix PATH : ${lib.makeBinPath [ nodejs ]}
     '';
-
-  env.CEF_PATH = cef-path;
 
   meta = {
     mainProgram = "stremio";
