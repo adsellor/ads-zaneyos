@@ -4,16 +4,18 @@
   fetchFromGitHub,
   openssl,
   pkg-config,
-  gtk4,
   mpv,
   libappindicator,
+  libsoup_3,
   makeWrapper,
   nodejs,
   webkitgtk_6_0,
   libadwaita,
   libepoxy,
   gettext,
-  # fetchurl,
+  wrapGAppsHook4,
+  glib-networking,
+  gsettings-desktop-schemas,
   ...
 }:
 rustPlatform.buildRustPackage (finalAttrs: {
@@ -23,60 +25,49 @@ rustPlatform.buildRustPackage (finalAttrs: {
   src = fetchFromGitHub {
     owner = "Stremio";
     repo = "stremio-linux-shell";
-    rev = "master";
+    rev = "main";
     hash = "sha256-07b7Ye75zoZ46Ar8DsL8+Q1RjtbJ4DmuLvXe8k+R4IA=";
   };
 
   cargoHash = "sha256-BgzOAU9TcUom8aVgFxXebUsZV2KprQeYIgJ8Mrcs/GA=";
 
   buildInputs = [
-    openssl
-    gtk4
-    mpv
     webkitgtk_6_0
     libadwaita
     libepoxy
+    libsoup_3
+    openssl
+    mpv
+    glib-networking
+    gsettings-desktop-schemas
   ];
 
   nativeBuildInputs = [
+    wrapGAppsHook4
     makeWrapper
     pkg-config
     gettext
   ];
 
-  #postPatch = ''
-  #  substituteInPlace ./src/config.rs \
-  #    --replace-fail \
-  #      'let file = data_dir.join(SERVER_FILE);' \
-  #      'let file = PathBuf::from(r"${server}");'
-
-  #  substituteInPlace ./src/server.rs \
-  #    --replace-fail \
-  #      'let should_download = self.config.version() != Some(latest_version.clone());' \
-  #      'let should_download = false;'
-  #'';
-
   postInstall = ''
     mkdir -p $out/share/applications
     mkdir -p $out/share/icons/hicolor/scalable/apps
-
     mv $out/bin/stremio-linux-shell $out/bin/stremio
     cp $src/data/com.stremio.Stremio.desktop $out/share/applications/com.stremio.Stremio.desktop
     cp $src/data/icons/com.stremio.Stremio.svg $out/share/icons/hicolor/scalable/apps/com.stremio.Stremio.svg
 
     wrapProgram $out/bin/stremio \
-       --prefix LD_LIBRARY_PATH : ${lib.makeLibraryPath [ libappindicator ]} \
-       --prefix PATH : ${lib.makeBinPath [ nodejs ]}
+       --prefix LD_LIBRARY_PATH : ${lib.makeLibraryPath [ libappindicator mpv ]} \
+       --prefix PATH : ${lib.makeBinPath [ nodejs ]} \
+       --prefix GIO_EXTRA_MODULES : "${glib-networking}/lib/gio/modules"
     '';
 
   meta = {
     mainProgram = "stremio";
     description = "Modern media center that gives you the freedom to watch everything you want";
     homepage = "https://www.stremio.com/";
-    # (Server-side) 4.x versions of the web UI are closed-source
     license = with lib.licenses; [
       gpl3Only
-      # server.js is unfree
       unfree
     ];
     maintainers = with lib.maintainers; [
