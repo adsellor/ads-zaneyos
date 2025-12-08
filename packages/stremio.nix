@@ -1,66 +1,98 @@
 {
   lib,
   rustPlatform,
-  fetchFromGitHub,
   openssl,
   pkg-config,
   mpv,
-  libappindicator,
-  libsoup_3,
   makeWrapper,
   nodejs,
   webkitgtk_6_0,
   libadwaita,
   libepoxy,
-  gettext,
   wrapGAppsHook4,
   glib-networking,
-  gsettings-desktop-schemas,
+  fetchFromGitHub,
+  gtk3,
+  runCommand,
+  cef-binary,
+  libGL,
+  libappindicator,
   ...
-}:
-rustPlatform.buildRustPackage (finalAttrs: {
-  name = "stremio-linux-shell";
-  version = "1.0.0-beta.12";
+}: let
+  cef = cef-binary.override {
+    version = "138.0.21";
+    gitRevision = "54811fe";
+    chromiumVersion = "138.0.7204.101";
 
+    srcHashes = {
+      "x86_64-linux" = "sha256-Kob/5lPdZc9JIPxzqiJXNSMaxLuAvNQKdd/AZDiXvNI=";
+    };
+  };
+
+  # cef-rs expects a specific directory layout
+  cef-path = runCommand "cef-path" {} ''
+    # the exact files to copy are listed here:
+    # https://github.com/Stremio/stremio-linux-shell/blob/2eb0252fb568eaba829c9289e5ce49db6378f734/flatpak/com.stremio.Stremio.Devel.json#L140
+      mkdir -p "$out/locales"
+      cp -r ${cef}/Release/{libcef.so,libEGL.so,libGLESv2.so,libvk_swiftshader.so,v8_context_snapshot.bin} $out
+      cp -r ${cef}/Resources/{*.pak,icudtl.dat} $out
+      cp -r ${cef}/Resources/locales/*.pak $out/locales
+  '';
+in
+rustPlatform.buildRustPackage (finalAttrs: {
+  pname = "stremio-linux-shell";
   src = fetchFromGitHub {
     owner = "Stremio";
     repo = "stremio-linux-shell";
     rev = "main";
-    hash = "sha256-07b7Ye75zoZ46Ar8DsL8+Q1RjtbJ4DmuLvXe8k+R4IA=";
+    hash = "sha256-NVChTlW146AAHtpeLrCEJBhWmOM7FvrSv9H/KMLJiNY=";
   };
-
-  cargoHash = "sha256-BgzOAU9TcUom8aVgFxXebUsZV2KprQeYIgJ8Mrcs/GA=";
+  version = "0-unstable-${builtins.substring 0 8 finalAttrs.src.rev}";
+  cargoLock.lockFile = "${finalAttrs.src}/Cargo.lock";
+  cargoLock.outputHashes = {
+    # some hashes are missing from the cargo lockfile? Not sure why
+    "cef-138.2.2+138.0.21" = "sha256-HfhiNwhCtKcuI27fGTCjk1HA1Icau6SUjXjHqAOllAk=";
+    "dpi-0.1.1" = "sha256-5nc8cGFl4jUsJXfEtfOxFBQFRoBrM6/5xfA2c1qhmoQ=";
+    "glutin-0.32.3" = "sha256-5IX+03mQmWxlCdVC0g1q2J+ulW+nPTAhYAd25wyaHx8=";
+    "libmpv2-4.1.0" = "sha256-zXMFuajnkY8RnVGlvXlZfoMpfifzqzJnt28a+yPZmcQ=";
+  };
+  # Don't fetch the CEF binaries at build time.
+  buildFeatures = [
+    "offline-build"
+  ];
 
   buildInputs = [
     webkitgtk_6_0
     libadwaita
     libepoxy
-    libsoup_3
     openssl
     mpv
     glib-networking
-    gsettings-desktop-schemas
+    gtk3
   ];
 
   nativeBuildInputs = [
     wrapGAppsHook4
     makeWrapper
     pkg-config
-    gettext
   ];
+
+  env.CEF_PATH = cef-path;
 
   postInstall = ''
     mkdir -p $out/share/applications
     mkdir -p $out/share/icons/hicolor/scalable/apps
+
     mv $out/bin/stremio-linux-shell $out/bin/stremio
+    # copy vendored server.js, shell no longer fetches at runtime
+    cp $src/data/server.js $out/bin/server.js
+
     cp $src/data/com.stremio.Stremio.desktop $out/share/applications/com.stremio.Stremio.desktop
     cp $src/data/icons/com.stremio.Stremio.svg $out/share/icons/hicolor/scalable/apps/com.stremio.Stremio.svg
 
     wrapProgram $out/bin/stremio \
-       --prefix LD_LIBRARY_PATH : ${lib.makeLibraryPath [ libappindicator mpv ]} \
-       --prefix PATH : ${lib.makeBinPath [ nodejs ]} \
-       --prefix GIO_EXTRA_MODULES : "${glib-networking}/lib/gio/modules"
-    '';
+       --prefix LD_LIBRARY_PATH : ${lib.makeLibraryPath [libGL libappindicator]} \
+       --prefix PATH : ${lib.makeBinPath [nodejs]}'';
 
   meta = {
     mainProgram = "stremio";
@@ -68,12 +100,11 @@ rustPlatform.buildRustPackage (finalAttrs: {
     homepage = "https://www.stremio.com/";
     license = with lib.licenses; [
       gpl3Only
+      # the server.js downloaded by the program is unfree
       unfree
     ];
-    maintainers = with lib.maintainers; [
-      griffi-gh
-      { name = "nuko"; }
-    ];
+    maintainers = lib.maintainers.fazzi;
     platforms = lib.platforms.linux;
   };
 })
+

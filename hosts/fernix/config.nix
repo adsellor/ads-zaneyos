@@ -27,8 +27,11 @@ in
     # Kernel
     kernelPackages = pkgs.linuxPackages_cachyos;
     # This is for OBS Virtual Cam Support
-    kernelModules = [ "v4l2loopback" ];
+    kernelModules = [ "v4l2loopback" "uvcvideo" ];
     extraModulePackages = [ config.boot.kernelPackages.v4l2loopback ];
+    extraModprobeConfig = ''
+      options uvcvideo quirks=640
+    '';
     # Needed For Some Steam Games
     kernel.sysctl = {
       "vm.max_map_count" = 2147483642;
