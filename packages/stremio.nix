@@ -45,7 +45,7 @@ rustPlatform.buildRustPackage (finalAttrs: {
     owner = "Stremio";
     repo = "stremio-linux-shell";
     rev = "main";
-    hash = "sha256-NVChTlW146AAHtpeLrCEJBhWmOM7FvrSv9H/KMLJiNY=";
+    hash = "sha256-1f9IBNo5gxpSqTSIf8QuQOlf+sfRhohOmQTLRbX/OU8=";
   };
   version = "0-unstable-${builtins.substring 0 8 finalAttrs.src.rev}";
   cargoLock.lockFile = "${finalAttrs.src}/Cargo.lock";

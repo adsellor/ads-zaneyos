@@ -150,6 +150,8 @@
         marksman.enable = true;
 
         svelte.enable = true;
+
+        gleam.enable = true;
       };
 
       keymaps = {

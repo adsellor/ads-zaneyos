@@ -25,7 +25,7 @@ in
 
   boot = {
     # Kernel
-    kernelPackages = pkgs.linuxPackages_cachyos;
+    kernelPackages = pkgs.linuxPackages_zen;
     # This is for OBS Virtual Cam Support
     kernelModules = [ "v4l2loopback" "uvcvideo" ];
     extraModulePackages = [ config.boot.kernelPackages.v4l2loopback ];
@@ -58,6 +58,13 @@ in
       enable = true;
       pkiBundle = "/var/lib/sbctl";
     };
+    kernelPatches = [{
+      name = "enable-rust-fw-loader";
+      patch = null;
+      structuredExtraConfig = with lib.kernel; {
+        RUST_FW_LOADER_ABSTRACTIONS = yes;
+      };
+    }];
   };
 
   stylix = {
@@ -66,12 +73,6 @@ in
     cursor.size = 24;
   };
 
-  drivers.nvidia.enable = true;
-  drivers.nvidia-prime = {
-    enable = true;
-    intelBusID = "PCI:0:2:0";
-    nvidiaBusID = "PCI:01:0:0";
-  };
   drivers.intel.enable = true;
   vm.guest-services.enable = false;
   local.hardware-clock.enable = false;

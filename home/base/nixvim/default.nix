@@ -39,7 +39,7 @@
      ./plugins/custom/plugins/typescript-tools.nix
      ./plugins/custom/plugins/octo.nix
      ./plugins/custom/plugins/trouble.nix
-     ./plugins/custom/plugins/remote-nvim.nix
+     ./plugins/custom/plugins/neogit.nix
   ];
 
   /*

@@ -8,7 +8,6 @@
       url = "github:nix-community/lanzaboote/v0.4.3";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     stylix.url = "github:danth/stylix";
@@ -51,7 +50,6 @@
       nixpkgs-darwin,
       nix-darwin,
       home-manager,
-      chaotic,
       nix-homebrew,
       homebrew-core,
       homebrew-cask,
@@ -86,7 +84,6 @@
             inputs.spicetify-nix.nixosModules.spicetify
             home-manager.nixosModules.home-manager
             lanzaboote.nixosModules.lanzaboote
-            chaotic.nixosModules.default
             {
               home-manager.extraSpecialArgs = mkSpecialArgs linuxSystem;
               home-manager.useGlobalPkgs = true;

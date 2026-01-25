@@ -43,6 +43,8 @@ in
         discord
         spotify
         ghostty
+        gpu-screen-recorder
+        irssi
       ];
     };
     # "newuser" = {
