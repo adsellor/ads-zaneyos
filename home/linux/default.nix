@@ -1,4 +1,11 @@
-{ username, lib, host, pkgs, inputs, ... }:
+{
+  username,
+  lib,
+  host,
+  pkgs,
+  inputs,
+  ...
+}:
 {
   imports = [
     ../base/default.nix
@@ -13,9 +20,10 @@
     ../../config/rofi/rofi.nix
     ../../config/rofi/config-emoji.nix
     ../../config/rofi/config-long.nix
-    ../../config/swaync.nix
-    ../../config/waybar.nix
-    ../../config/wlogout.nix
+    # Replaced by caelestia-shell:
+    # ../../config/swaync.nix
+    # ../../config/waybar.nix
+    # ../../config/wlogout.nix
     inputs.caelestia-shell.homeManagerModules.default
   ];
 
@@ -27,10 +35,11 @@
     recursive = true;
   };
 
-  home.file.".config/wlogout/icons" = {
-    source = ../../config/wlogout;
-    recursive = true;
-  };
+  # Replaced by caelestia-shell:
+  # home.file.".config/wlogout/icons" = {
+  #   source = ../../config/wlogout;
+  #   recursive = true;
+  # };
   home.file.".config/swappy/config".text = ''
     [Default]
     save_dir=/home/${username}/Pictures/Screenshots
@@ -74,7 +83,7 @@
   };
 
   # Styling Options
-  stylix.targets.waybar.enable = false;
+  # stylix.targets.waybar.enable = false; # waybar replaced by caelestia
   stylix.targets.rofi.enable = false;
   stylix.targets.hyprland.enable = false;
   gtk = {
@@ -91,7 +100,6 @@
   };
   qt = {
     enable = true;
-    style.name =  lib.mkForce "adwaita-dark";
     platformTheme.name = lib.mkForce "gtk3";
   };
 }

@@ -10,9 +10,6 @@
         name  = "${gitUsername}";
         email  = "${gitEmail}";
       };
-      ui = {
-        pager = "bat";
-      };
     };
   };
 }

@@ -1,13 +1,15 @@
-{...}: 
+{...}:
   let
     inherit (import ../../hosts/fern/variables.nix) gitUsername gitEmail;
   in
   {
   programs.git = {
     enable = true;
-    userName = "${gitUsername}";
-    userEmail = "${gitEmail}";
-    extraConfig = {
+    settings = {
+      user = {
+        email = "${gitEmail}";
+        name = "${gitUsername}";
+      };
       init = {
         defaultBranch = "main";
       };
