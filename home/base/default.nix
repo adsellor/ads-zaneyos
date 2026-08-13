@@ -8,7 +8,6 @@
     ./starship.nix
     ./git.nix
     ./gh.nix
-    ./newsboat.nix
     ./zathura.nix
     ./ripgrep.nix
     ./zellij.nix
@@ -29,4 +28,5 @@
 
   home.username = "${username}";
   home.stateVersion = "23.11";
+  home.pointerCursor.enable = true;
 }

@@ -122,6 +122,7 @@
   programs.nixvim = {
     enable = true;
     defaultEditor = true;
+    nixpkgs.source = inputs.nixpkgs;
 
     # You can easily change to a different colorscheme.
     # Add your colorscheme here and enable it.
@@ -339,7 +340,7 @@
     plugins = {
       # Adds icons for plugins to utilize in ui
       web-devicons.enable = true;
-      transparent.enable = true;
+      # transparent.enable = true;
 
       # Detect tabstop and shiftwidth automatically
       # https://nix-community.github.io/nixvim/plugins/sleuth/index.html

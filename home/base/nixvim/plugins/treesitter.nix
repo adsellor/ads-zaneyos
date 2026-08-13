@@ -4,6 +4,12 @@
     # https://nix-community.github.io/nixvim/plugins/treesitter/index.html
     plugins.treesitter = {
       enable = true;
+      indent = {
+        enable = true;
+        disable = [
+          "ruby"
+        ];
+      };
 
       # TODO: Don't think I need this as nixGrammars is true which should auto install these???
       settings = {
@@ -26,13 +32,6 @@
 
           # Some languages depend on vim's regex highlighting system (such as Ruby) for indent rules.
           additional_vim_regex_highlighting = true;
-        };
-
-        indent = {
-          enable = true;
-          disable = [
-            "ruby"
-          ];
         };
 
         # There are additional nvim-treesitter modules that you can use to interact

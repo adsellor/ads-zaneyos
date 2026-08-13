@@ -77,6 +77,7 @@ in
     cursor.package = pkgs.bibata-cursors;
     cursor.name = "Bibata-Modern-Ice";
     cursor.size = 24;
+    targets.regreet.enable = false;
   };
 
   drivers.nvidia.enable = true;
@@ -161,6 +162,7 @@ in
     };
     gamemode.enable = true;
     gamescope.enable = true;
+    hyprland.enable = true;
   };
 
   nixpkgs.config.allowUnfree = true;
@@ -168,6 +170,27 @@ in
   nixpkgs.overlays = [
     (final: prev: {
       _7zz = prev._7zz.override { useUasm = true; };
+      glaze = prev.glaze.override {
+        enableSSL = false;
+        enableInterop = false;
+      };
+      # hyprland = prev.hyprland.overrideAttrs (old: {
+      #   buildInputs = (old.buildInputs or [ ]) ++ [ prev.git ];
+      #   postPatch = (old.postPatch or "") + ''
+      #     substituteInPlace CMakeLists.txt \
+      #       --replace-fail \
+      #         "find_package(glaze 7...<8 QUIET)" \
+      #         "find_package(glaze 8...<9 QUIET HINTS ${final.glaze}/share/glaze)"
+      #     substituteInPlace hyprpm/CMakeLists.txt \
+      #       --replace-fail \
+      #         "find_package(glaze 7...<8 QUIET)" \
+      #         "find_package(glaze 8...<9 QUIET HINTS ${final.glaze}/share/glaze)"
+      #     substituteInPlace start/CMakeLists.txt \
+      #       --replace-fail \
+      #         "find_package(glaze 7...<8 QUIET)" \
+      #         "find_package(glaze 8...<9 QUIET HINTS ${final.glaze}/share/glaze)"
+      #   '';
+      # });
     })
   ];
 
@@ -216,7 +239,7 @@ in
     nh
     nixfmt
     libvirt
-    swww
+    awww
     grim
     slurp
     file-roller
@@ -239,9 +262,8 @@ in
     cudaPackages.cudatoolkit
     addDriverRunpath
     libGL
-    xwayland
     wayback-x11
-    (callPackage ../../packages/stremio.nix { })
+    stremio-linux-shell
     inputs.hyprsession.packages."${pkgs.stdenv.hostPlatform.system}".default
     kdePackages.partitionmanager
     sbctl
@@ -263,19 +285,10 @@ in
     ZANEYOS = "true";
   };
 
-  # Extra Portal Configuration
   xdg.portal = {
     enable = true;
     wlr.enable = true;
-    extraPortals = [
-      pkgs.xdg-desktop-portal-gtk
-      pkgs.xdg-desktop-portal
-    ];
-    configPackages = [
-      pkgs.xdg-desktop-portal-gtk
-      pkgs.xdg-desktop-portal-hyprland
-      pkgs.xdg-desktop-portal
-    ];
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
 
   # Services to start

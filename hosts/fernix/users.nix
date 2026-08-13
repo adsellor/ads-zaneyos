@@ -34,7 +34,6 @@ in
         grc
         any-nix-shell
         zig
-        newsboat
         gtypist
         typora
         tty-clock

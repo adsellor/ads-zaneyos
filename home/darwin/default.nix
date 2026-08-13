@@ -19,9 +19,9 @@
     fu = "cd /Users/${username}/Developer/ads-zaneyos && sudo nix flake update && fr";
     ncg = "nix-collect-garbage --delete-old && sudo nix-collect-garbage -d";
     cat = "bat";
-    ls = "eza --icons";
-    ll = "eza -lh --icons --grid --group-directories-first";
-    la = "eza -lah --icons --grid --group-directories-first";
+    ls = "eza --icons=auto";
+    ll = "eza -lh --icons=auto --grid --group-directories-first";
+    la = "eza -lah --icons=auto --grid --group-directories-first";
     ".." = "cd ..";
   };
 }
