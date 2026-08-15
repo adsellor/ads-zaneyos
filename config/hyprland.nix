@@ -215,7 +215,7 @@ in
 
         bind = lib.flatten [
           # Caelestia launcher
-          (bind "${mod} + SHIFT + Return" (dsp.global "caelestia:launcher") { })
+          (bind "${mod} + SHIFT + Return" (dsp.exec_cmd "caelestia-shell ipc call drawers toggle launcher") { })
 
           # Application launchers
           (bind "${mod} + Return" (dsp.exec_cmd "${terminal}") { })
@@ -231,6 +231,7 @@ in
           (bind "${mod} + SHIFT + G" (dsp.exec_cmd "godot4") { })
           (bind "${mod} + T" (dsp.exec_cmd "thunar") { })
           (bind "${mod} + Y" (dsp.exec_cmd "${terminal} -e ${fileManager}") { })
+          (bind "${mod} + R" (dsp.exec_cmd "${terminal} -e readmarks") { })
           (bind "${mod} + M" (dsp.exec_cmd "spotify") { })
 
           # Window management

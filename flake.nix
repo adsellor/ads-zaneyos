@@ -37,6 +37,7 @@
       flake = false;
     };
     hyprsession.url = "github:joshurtree/hyprsession";
+    readmarks.url = "git+https://codeberg.org/adsellor/readmarks";
     caelestia-shell = {
       url = "github:caelestia-dots/shell";
       inputs.nixpkgs.follows = "nixpkgs";
