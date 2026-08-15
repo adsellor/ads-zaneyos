@@ -4,6 +4,8 @@
     ../base/default.nix
     ./devbox.nix
     ./signal.nix
+    ./rex.nix
+    ./bitbucket.nix
   ];
 
   home.homeDirectory = lib.mkForce "/Users/${username}";

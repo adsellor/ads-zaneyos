@@ -16,6 +16,10 @@
       url = "github:VonHeikemen/fine-cmdline.nvim";
       flake = false;
     };
+    octo-nvim = {
+      url = "github:adsellor/octo.nvim/provider-layer";
+      flake = false;
+    };
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
     nixvim = {
       url = "github:nix-community/nixvim";

@@ -22,8 +22,8 @@
   environment.systemPackages = with pkgs; [
     vim
     git
+    git-lfs
     raycast
-    xcodes
     eza
     apple-sdk
   ];
@@ -49,7 +49,7 @@
       autoUpdate = true;
       upgrade = true;
     };
-    casks = ["ghostty"  "stremio" "zen" "beekeeper-studio" "docker"];
+    casks = ["ghostty"  "stremio" "zen" "beekeeper-studio" "docker" "xcodes"];
   };
 
   nix.package = pkgs.nix;

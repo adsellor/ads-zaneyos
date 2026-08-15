@@ -29,5 +29,5 @@
 
   home.username = "${username}";
   home.stateVersion = "23.11";
-  home.pointerCursor.enable = true;
+  # home.pointerCursor.enable = true;
 }
