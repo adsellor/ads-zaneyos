@@ -206,7 +206,6 @@ in
           "hyprland.start"
           (mkLuaInline ''
             function()
-              hl.exec_cmd("caelestia-shell")
               hl.exec_cmd("lxqt-policykit-agent")
               hl.exec_cmd("auto-dnd")
               hl.exec_cmd("hyprsession")
