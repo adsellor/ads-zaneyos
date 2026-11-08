@@ -24,6 +24,7 @@ in
     ../../modules/shared/stylix.nix
   ];
 
+  hardware.i2c.enable = true;
   boot = {
     # Kernel
     kernelPackages = pkgs.linuxPackages_zen;
@@ -31,6 +32,7 @@ in
     kernelModules = [
       "v4l2loopback"
       "uvcvideo"
+      "i2c-dev"
     ];
     extraModulePackages = [ config.boot.kernelPackages.v4l2loopback ];
     extraModprobeConfig = ''
@@ -166,7 +168,6 @@ in
   };
 
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.cudaSupport = true;
   nixpkgs.overlays = [
     (final: prev: {
       _7zz = prev._7zz.override { useUasm = true; };
@@ -174,6 +175,24 @@ in
         enableSSL = false;
         enableInterop = false;
       };
+      # gpu-screen-recorder assumes any dynamically linked FFmpeg with
+      # libavcodec >= 63 (i.e. FFmpeg 9) was built against nv-codec-headers
+      # 13.1, and refuses NVENC when the driver reports less. Nixpkgs pins
+      # FFmpeg to nv-codec-headers-12 (12.1.14.0) for every version >= 6, so
+      # the real requirement is 12.1 and the check rejects a driver that works
+      # fine — leaving no usable encoder at all on NVIDIA and failing every
+      # recording started from caelestia. Correct the constant to match the
+      # FFmpeg we actually link against.
+      #
+      # Drop this once nixpkgs ships nv-codec-headers 13.x for FFmpeg 9.
+      gpu-screen-recorder = prev.gpu-screen-recorder.overrideAttrs (old: {
+        postPatch = (old.postPatch or "") + ''
+          substituteInPlace src/codec_query/nvenc.c \
+            --replace-fail \
+              "NVENCAPI_PACKED_VERSION(13, 1)" \
+              "NVENCAPI_PACKED_VERSION(12, 1)"
+        '';
+      });
       # hyprland = prev.hyprland.overrideAttrs (old: {
       #   buildInputs = (old.buildInputs or [ ]) ++ [ prev.git ];
       #   postPatch = (old.postPatch or "") + ''
@@ -349,7 +368,10 @@ in
     };
     rpcbind.enable = false;
     nfs.server.enable = false;
-    scx.enable = true;
+    scx-loader = {
+      enable = true;
+      config.default_sched = "scx_bpfland";
+    };
   };
   systemd.services.flatpak-repo = {
     path = [ pkgs.flatpak ];
@@ -364,8 +386,8 @@ in
   };
 
   # Extra Logitech Support
-  hardware.logitech.wireless.enable = false;
-  hardware.logitech.wireless.enableGraphical = false;
+  hardware.logitech.wireless.enable = true;
+  programs.solaar.enable = true;
 
   # Bluetooth Support
   hardware.bluetooth.enable = true;
@@ -377,6 +399,14 @@ in
 
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
+
+  # Installs a setcap wrapper for gsr-kms-server at /run/wrappers/bin, so KMS
+  # capture works without escalating through pkexec on every recording.
+  programs.gpu-screen-recorder.enable = true;
+
+  # Fish is the login shell (see ./users.nix), so it must also land in
+  # /etc/shells — pkexec and friends reject a $SHELL that isn't listed.
+  programs.fish.enable = true;
 
   # Security / Polkit
   security.rtkit.enable = true;
@@ -402,6 +432,9 @@ in
       auth include login
     '';
   };
+  security.pki.caCertificateBlacklist = [
+    "Comodo AAA Services root"
+  ];
 
   # Optimization settings and garbage collection automation
   nix = {
@@ -413,6 +446,8 @@ in
       ];
       substituters = [ "https://hyprland.cachix.org" ];
       trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
+      max-substitution-jobs = 4;
+      http-connections = 8;
     };
     gc = {
       automatic = true;

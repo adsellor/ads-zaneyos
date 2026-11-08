@@ -18,10 +18,6 @@
     ../../config/rofi/rofi.nix
     ../../config/rofi/config-emoji.nix
     ../../config/rofi/config-long.nix
-    # Replaced by caelestia-shell:
-    # ../../config/swaync.nix
-    # ../../config/waybar.nix
-    # ../../config/wlogout.nix
     inputs.caelestia-shell.homeManagerModules.default
   ];
 
@@ -71,6 +67,17 @@
       enable = true;
       createDirectories = true;
       setSessionVariables = true;
+    };
+    mimeApps = {
+      enable = true;
+      defaultApplications = {
+        "application/pdf" = [ "org.pwmt.zathura.desktop" ];
+        "text/html" = [ "zen-beta.desktop" ];
+        "x-scheme-handler/http" = [ "zen-beta.desktop" ];
+        "x-scheme-handler/https" = [ "zen-beta.desktop" ];
+        "x-scheme-handler/about" = [ "zen-beta.desktop" ];
+        "x-scheme-handler/unknown" = [ "zen-beta.desktop" ];
+      };
     };
   };
 

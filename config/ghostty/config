@@ -59,8 +59,6 @@ font-size = 16
 #font-family = Iosevka Nerd Font
 # font-family = SFMono Nerd Font
 
-title = "GhosTTY"
-
 wait-after-command = false
 shell-integration = detect
 window-save-state = always

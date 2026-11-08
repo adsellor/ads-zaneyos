@@ -10,6 +10,11 @@
         name  = "${gitUsername}";
         email  = "${gitEmail}";
       };
+      signing = {
+        backend = "ssh";
+        key = "~/.ssh/codeberg-sign.pub";
+      };
+      git.sign-on-push = true;
     };
   };
 }

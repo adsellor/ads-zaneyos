@@ -13,7 +13,7 @@
       init = {
         defaultBranch = "main";
       };
-      user.signingkey = "~/.ssh/id_ed25519.pub";
+      user.signingkey = "~/.ssh/codeberg-sign.pub";
       gpg.format = "ssh";
       commit.gpgsign = "true";
       tag.gpgsign = "true";

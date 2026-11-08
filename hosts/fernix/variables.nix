@@ -11,7 +11,7 @@
 
   # Program Options
   browser = "zen-beta"; # Set Default Browser (google-chrome-stable for google-chrome)
-  terminal = "ghostty"; # Set Default System Terminal
+  terminal = "monstar"; # Set Default System Terminal
   keyboardLayout = "us,am";
   tmx = "zellij";
   fileManager = "yazi";

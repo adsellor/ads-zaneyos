@@ -22,6 +22,7 @@ in
         "docker"
         "gamemode"
         "video"
+        "i2c"
       ];
       shell = pkgs.fish;
       ignoreShellProgramCheck = true;
@@ -41,9 +42,8 @@ in
         mangohud
         discord
         spotify
-        ghostty
-        gpu-screen-recorder
         irssi
+        ddcutil
       ];
     };
     # "newuser" = {
