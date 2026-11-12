@@ -40,6 +40,7 @@
      ./plugins/custom/plugins/octo.nix
      ./plugins/custom/plugins/trouble.nix
      ./plugins/custom/plugins/neogit.nix
+     ./plugins/custom/plugins/diffview.nix
   ];
 
   /*

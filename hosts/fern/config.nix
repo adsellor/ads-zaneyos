@@ -55,6 +55,20 @@
   nix.package = pkgs.nix;
   nixpkgs.config.allowUnfree = true;
 
+  nixpkgs.overlays = [
+    (final: prev: {
+      telegram-desktop = prev.telegram-desktop.override {
+        unwrapped = prev.telegram-desktop.unwrapped.overrideAttrs (old: {
+          postPatch = (old.postPatch or "") + ''
+            substituteInPlace Telegram/cmake/telegram_apple_swift_runtime.cmake \
+              --replace-fail 'COMMAND "''${swift_bin_dir}/swift-stdlib-tool"' \
+                             'COMMAND true'
+          '';
+        });
+      };
+    })
+  ];
+
   nix.settings = {
     experimental-features = ["nix-command" "flakes" ];
   };
