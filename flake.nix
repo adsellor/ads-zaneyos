@@ -4,6 +4,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.05";
+    nixpkgs-small.url = "github:nixos/nixpkgs/nixos-unstable-small";
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v1.1.0";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -59,6 +60,7 @@
     {
       nixpkgs,
       nixpkgs-stable,
+      nixpkgs-small,
       nixpkgs-darwin,
       nix-darwin,
       home-manager,
@@ -81,6 +83,10 @@
         inherit system inputs username nix-homebrew homebrew-cask homebrew-core;
         host = if system == linuxSystem then linuxHost else darwinHost;
         pkgs-stable = import nixpkgs-stable {
+          inherit system;
+          config.allowUnfree = true;
+        };
+        pkgs-small = import nixpkgs-small {
           inherit system;
           config.allowUnfree = true;
         };

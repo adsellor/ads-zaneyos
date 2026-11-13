@@ -13,6 +13,7 @@
     ./ghostty.nix
     ./signal.nix
     ./caelestia.nix
+    ./linear.nix
     ../../config/emoji.nix
     ../../config/hyprland.nix
     ../../config/rofi/rofi.nix

@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  pkgs-small,
   host,
   username,
   options,
@@ -27,7 +28,7 @@ in
   hardware.i2c.enable = true;
   boot = {
     # Kernel
-    kernelPackages = pkgs.linuxPackages_zen;
+    kernelPackages = pkgs-small.linuxPackages_zen;
     # This is for OBS Virtual Cam Support
     kernelModules = [
       "v4l2loopback"

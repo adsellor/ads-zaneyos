@@ -200,6 +200,7 @@ in
           { match.class = "^(Signal)$"; workspace = "special:one"; }
           { match.class = "^(telegram-desktop)$"; workspace = "special:one"; }
           { match.class = "^(org.telegram.desktop)$"; workspace = "special:one"; }
+          { match.class = "^(chromium.*|chrome-.*)$"; no_auto_hdr = true; }
         ];
 
         on = mkArgs [
