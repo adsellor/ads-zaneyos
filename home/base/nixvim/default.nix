@@ -41,6 +41,8 @@
      ./plugins/custom/plugins/trouble.nix
      ./plugins/custom/plugins/neogit.nix
      ./plugins/custom/plugins/diffview.nix
+     ./plugins/custom/plugins/jj.nix
+     ./plugins/custom/plugins/image.nix
   ];
 
   /*

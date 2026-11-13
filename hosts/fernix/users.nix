@@ -44,6 +44,7 @@ in
         spotify
         irssi
         ddcutil
+        imagemagick
       ];
     };
     # "newuser" = {
