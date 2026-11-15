@@ -28,7 +28,7 @@ in
   hardware.i2c.enable = true;
   boot = {
     # Kernel
-    kernelPackages = pkgs-small.linuxPackages_zen;
+    kernelPackages = pkgs.linuxPackages_zen;
     # This is for OBS Virtual Cam Support
     kernelModules = [
       "v4l2loopback"

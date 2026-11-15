@@ -34,6 +34,7 @@ let
       move = arg: mkLuaInline "hl.dsp.window.move(${toLua { } arg})";
       drag = mkLuaInline "hl.dsp.window.drag()";
       resize = mkLuaInline "hl.dsp.window.resize()";
+      resize_by = arg: mkLuaInline "hl.dsp.window.resize(${toLua { } arg})";
       close = mkLuaInline "hl.dsp.window.close()";
       pseudo = mkLuaInline "hl.dsp.window.pseudo()";
       fullscreen = mkLuaInline "hl.dsp.window.fullscreen()";
@@ -250,6 +251,12 @@ in
           (bind "${mod} + SHIFT + L" (dsp.window.move { direction = "r"; }) { })
           (bind "${mod} + SHIFT + K" (dsp.window.move { direction = "u"; }) { })
           (bind "${mod} + SHIFT + J" (dsp.window.move { direction = "d"; }) { })
+
+          # Resize windows
+          (bind "CONTROL + ALT + H" (dsp.window.resize_by { x = -40; y = 0; relative = true; }) { repeating = true; })
+          (bind "CONTROL + ALT + L" (dsp.window.resize_by { x = 40; y = 0; relative = true; }) { repeating = true; })
+          (bind "CONTROL + ALT + K" (dsp.window.resize_by { x = 0; y = -40; relative = true; }) { repeating = true; })
+          (bind "CONTROL + ALT + J" (dsp.window.resize_by { x = 0; y = 40; relative = true; }) { repeating = true; })
 
           # Move focus
           (bind "${mod} + left" (dsp.focus { direction = "l"; }) { })
