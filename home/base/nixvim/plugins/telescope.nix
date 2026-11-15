@@ -1,5 +1,7 @@
-{
+{ pkgs, ... }: {
   programs.nixvim = {
+    extraPackages = [ pkgs.fd ];
+
     # Fuzzy Finder (files, lsp, etc)
     # https://nix-community.github.io/nixvim/plugins/telescope/index.html
     plugins.telescope = {

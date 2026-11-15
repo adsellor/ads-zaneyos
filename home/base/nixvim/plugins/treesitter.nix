@@ -1,5 +1,7 @@
-{
+{ pkgs, ... }: {
   programs.nixvim = {
+    extraPackages = [ pkgs.tree-sitter ];
+
     # Highlight, edit, and navigate code
     # https://nix-community.github.io/nixvim/plugins/treesitter/index.html
     plugins.treesitter = {

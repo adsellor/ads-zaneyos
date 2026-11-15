@@ -354,14 +354,15 @@
       # Highlight todo, notes, etc in comments
       # https://nix-community.github.io/nixvim/plugins/todo-comments/index.html
       todo-comments = {
+        enable = true;
         settings = {
-          enable = true;
           signs = true;
         };
       };
 
       render-markdown = {
         enable = true;
+        settings.latex.enabled = false;
       };
 
     };

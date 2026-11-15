@@ -3,6 +3,7 @@
     plugins.typescript-tools = {
       enable = true;
       settings = {
+        filetypes = [ "javascript" "javascriptreact" "typescript" "typescriptreact" ];
         tsserver_file_preferences = {
           __raw = ''
             function(ft)

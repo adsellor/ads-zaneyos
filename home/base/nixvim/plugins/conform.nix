@@ -9,6 +9,8 @@
       eslint_d
       black
       isort
+      gotools
+      rustfmt
     ];
 
     # Autoformat

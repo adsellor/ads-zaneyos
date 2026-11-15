@@ -14,6 +14,7 @@
     ./signal.nix
     ./caelestia.nix
     ./linear.nix
+    ./raddebugger.nix
     ../../config/emoji.nix
     ../../config/hyprland.nix
     ../../config/rofi/rofi.nix
